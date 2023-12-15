@@ -1,21 +1,100 @@
 .navbar_container {
   width: 100%;
+  padding: 0 38px;
+  box-sizing: border-box;
   height: 98px;
   background-image: url("@/assets/img/layout/nav_background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   .navbar_logo {
     display: inline-block;
     vertical-align: middle;
     background-image: url("@/assets/img/layout/nav_logo.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
     width: 526px;
     height: 83px;
   }
 
   .nav_list {
-    .nav_list_li {
-      .nav_list_title {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 
+
+    .nav_list_li {
+      width: 151px;
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+
+      &:hover {
+        background-image: url("@/assets/img/layout/nav_li_back.png");
+
+        .nav_list_title {
+          color: #FFFFFF;
+        }
+      }
+
+      .nav_list_title {
+        width: 100%;
+        text-align: center;
+        height: 100%;
+        font-size: 16px;
+        color: #102030;
+        line-height: 98px;
       }
     }
   }
+
+  .nav_login_container {
+    display: inline-block;
+    vertical-align: middle;
+    width: 216px;
+    text-align: left;
+    height: 100%;
+    line-height: 98px;
+
+    .nav_login_user_line {
+      display: inline-block;
+      vertical-align: middle;
+      height: 18px;
+      width: 1px;
+      background-color: #653C02;
+
+    }
+
+    .nav_cont {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      width: calc(100% - 1px);
+
+      .nav_login_user_icon {
+        height: 18px;
+        width: 16px;
+        background-image: url("@/assets/img/layout/user.png");
+        display: inline-block;
+        vertical-align: middle;
+        background-size: contain;
+        background-position: center center;
+      }
+
+      .nav_login_user_title {
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: middle;
+        margin-left: 15px;
+      }
+    }
+  }
+
 }
