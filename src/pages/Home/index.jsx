@@ -22,12 +22,13 @@ export function Home({value, decrement}) {
     })
     const dispatch = useDispatch()
 
-    return (<div>
-        <div>{value}</div>
-        <button onClick={() => dispatch(increment())}>hook加</button>
-        <button onClick={decrement}>减小
-        </button>
-    </div>)
+    return (
+        <div>
+            <div>{value}</div>
+            <button onClick={() => dispatch(increment())}>hook加</button>
+            <button onClick={decrement}>减小
+            </button>
+        </div>)
 }
 
 

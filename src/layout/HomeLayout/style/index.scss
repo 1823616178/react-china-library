@@ -1,0 +1,21 @@
+.navbar_container {
+  width: 100%;
+  height: 98px;
+  background-image: url("@/assets/img/layout/nav_background.png");
+
+  .navbar_logo {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url("@/assets/img/layout/nav_logo.png");
+    width: 526px;
+    height: 83px;
+  }
+
+  .nav_list {
+    .nav_list_li {
+      .nav_list_title {
+
+      }
+    }
+  }
+}
