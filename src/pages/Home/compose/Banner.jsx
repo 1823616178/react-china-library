@@ -43,13 +43,14 @@ export function HomeBanner() {
                         <input className={"banner_container_input_in"}/>
                     </label>
                     <div className={"banner_container_input_button"}>搜索</div>
+                    <div className="triangle"></div>
                 </div>
                 <div className={"banner_container_input_high"}>高级检索</div>
 
             </div>
             <div className={"banner_container_select"}>
                 {checkboxLTypes.map((res, index) => (
-                    <label>
+                    <label key={index}>
                         <input type={"checkbox"} title={res.value} className={"banner_container_checkbox"}/>
                         <span>{res.value}</span>
                     </label>
