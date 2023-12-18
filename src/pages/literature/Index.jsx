@@ -3,6 +3,7 @@ import {SearchBox} from "@/composent/header/SearchBox.jsx";
 import React, {useState} from "react";
 import headerTitle from "@/assets/img/home/home_banner_title.png";
 import {HomeBody} from "@/pages/Home/compose/HomeBody.jsx";
+import {LiteratureBody} from "@/pages/literature/compose/LiteratureBody.jsx";
 
 export function LiteratureIndex() {
     const [checkBoxShow, changeCheckbox] = useState(false)
@@ -15,6 +16,7 @@ export function LiteratureIndex() {
             {
                 checkBoxShow ? <SearchBox changeCheckbox={changeCheckbox}/> : <></>
             }
+            <LiteratureBody/>
         </div>
     )
 }

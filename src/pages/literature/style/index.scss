@@ -1,0 +1,152 @@
+.Literature_container {
+  width: 1336px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  margin: 40px auto 0;
+
+  .Literature_container_left {
+    width: 260px;
+
+    .Literature_container_left_ziyuan {
+      border: 1px solid #B2806C;
+
+      .Literature_container_left_head {
+        width: 260px;
+        height: 60px;
+        line-height: 60px;
+        box-sizing: border-box;
+        padding: 0 30px;
+        background-image: url("@/assets/img/layout/nav_background.png");
+
+        .Literature_container_left_head_title {
+          font-size: 18px;
+          color: #653C02;
+        }
+      }
+
+      .Literature_container_left_head_body {
+        margin-top: 14px;
+        padding-bottom: 14px;
+        box-sizing: border-box;
+
+        .Literature_container_left_head_body_tab {
+          height: 48px;
+          width: 260px;
+          overflow: hidden;
+          background-size: cover;
+          background-position: center center;
+          padding: 0 30px;
+          box-sizing: border-box;
+          line-height: 45px;
+          color: #653C02;
+          font-size: 18px;
+          cursor: pointer;
+          user-select: none;
+          transition: all .9s;
+
+          &:hover {
+            background-color: #F0E6E1;
+            background-image: url("@/assets/img/literature/tab_back.png");
+            background-repeat: no-repeat;
+          }
+
+          .Literature_container_left_head_body_tab_font {
+            display: inline-block;
+            vertical-align: middle;
+            width: 80%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+          }
+
+          .Literature_container_left_head_body_tab_font_num {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+      }
+
+    }
+
+    .Literature_container_left_fenlei {
+      margin-top: 16px;
+
+
+      .Literature_container_left_fenlei_head {
+        height: 48px;
+        line-height: 48px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 30px;
+        background-image: url("@/assets/img/layout/nav_background.png");
+        border: 1px solid #B2806C;
+
+        .Literature_container_left_fenlei_head_title {
+          font-size: 18px;
+          display: inline-block;
+          color: #653C02;
+          vertical-align: middle;
+        }
+
+        .Literature_container_left_fenlei_head_icon {
+          width: 20px;
+          display: inline-block;
+          vertical-align: middle;
+          height: 10px;
+          background-image: url("@/assets/img/literature/tab_arrow.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+
+      .Literature_container_left_fenlei_body {
+        width: 260px;
+        border-left: 1px solid #653C02;
+        border-right: 1px solid #653C02;
+        border-bottom: 1px solid #653C02;
+        background: white;
+        padding: 24px 35px 0;
+        box-sizing: border-box;
+
+        .Literature_container_left_fenlei_body_li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 24px;
+          justify-content: space-between;
+          cursor: pointer;
+
+          .Literature_container_left_fenlei_body_li_icon {
+            width: 8px;
+            height: 15px;
+            background-image: url("@/assets/img/literature/back_arrow_tag.png");
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+          }
+
+          .Literature_container_left_fenlei_body_li_title {
+            width: 60%;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 18px;
+            color: #653C02;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .Literature_container_left_fenlei_body_li_num {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+  }
+}
