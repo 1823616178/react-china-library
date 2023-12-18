@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
+import defaultHeaderTitle from '@/assets/img/home/home_banner_title.png'
 
-export function HomeBanner(props) {
+export function HomeBanner({changeCheckbox, headerTitle = defaultHeaderTitle}) {
     const gatherCheckBoxList = [
         {
             value: "全部",
@@ -28,15 +29,15 @@ export function HomeBanner(props) {
         }
     ]
     const [checkboxLTypes] = useState(gatherCheckBoxList)
-
-
     useEffect(() => {
 
     }, []);
 
     return (
         <div className={"banner_container"}>
-            <div className={"banner_container_title"}></div>
+            <div className={"banner_container_title"} style={
+                {backgroundImage: `url(${headerTitle})`}
+            }></div>
             <div className={"banner_container_input"}>
                 <div className={"banner_container_search"}>
                     <label>
@@ -46,7 +47,7 @@ export function HomeBanner(props) {
                     <div className="triangle"></div>
                 </div>
                 <div className={"banner_container_input_high"} onClick={() => {
-                    props.changeCheckbox(true)
+                    changeCheckbox(true)
                 }}>高级检索
                 </div>
 

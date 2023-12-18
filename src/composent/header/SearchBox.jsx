@@ -1,4 +1,4 @@
-import '../style/SearchBox.scss'
+import '../../pages/Home/style/SearchBox.scss'
 import {useRef, useState} from "react";
 
 export function SearchBox(props) {

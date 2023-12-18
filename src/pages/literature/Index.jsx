@@ -1,23 +1,20 @@
-import React, {useState} from 'react'
-import './style/index.scss'
 import {HomeBanner} from "@/composent/header/Banner.jsx";
-import {HomeBody} from "@/pages/Home/compose/HomeBody.jsx";
 import {SearchBox} from "@/composent/header/SearchBox.jsx";
-import headerTitle from '@/assets/img/home/home_banner_title.png'
+import React, {useState} from "react";
+import headerTitle from "@/assets/img/home/home_banner_title.png";
+import {HomeBody} from "@/pages/Home/compose/HomeBody.jsx";
 
-export function Home() {
+export function LiteratureIndex() {
     const [checkBoxShow, changeCheckbox] = useState(false)
+
     return (
-        <div className={"home_container"}>
+        <div className={"literature_container"}>
             <HomeBanner
                 headerTitle={headerTitle}
                 changeCheckbox={changeCheckbox}/>
-            <HomeBody/>
             {
                 checkBoxShow ? <SearchBox changeCheckbox={changeCheckbox}/> : <></>
             }
         </div>
     )
 }
-
-
