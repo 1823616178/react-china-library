@@ -1,0 +1,26 @@
+.literature_chart_container {
+  margin-top: 40px;
+
+  .literature_article_container_know_bar {
+    width: 1336px;
+    height: 61px;
+    background-image: url("@/assets/img/layout/nav_background.png");
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-radius: 4px 4px 0 0;
+    box-sizing: border-box;
+
+    .literature_article_container_know_bar_title {
+      font-size: 18px;
+      color: #653C02;
+
+    }
+
+    .literature_article_container_know_bar_result {
+      font-size: 16px;
+    }
+  }
+}

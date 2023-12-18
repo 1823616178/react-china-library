@@ -5,8 +5,6 @@ import activeTabImage from '@/assets/img/literature/tab_back.png'
 
 export const LiteratureBody = () => {
     const [ZiYuanIsSelect, setZiYuan] = useState(0)
-    const [fenleiIsSelect, setFenLei] = useState(0)
-
     const [ziyuanList] = useState([{title: "文献", num: 30}, {title: "篇章", num: 30}])
     const ziyuanStyle = {
         backgroundColor: "#F0E6E1",
@@ -14,6 +12,7 @@ export const LiteratureBody = () => {
         backgroundRepeat: "no-repeat"
     }
     const fenLeiList = useState([])
+    const [fenleiIsSelect, setFenLei] = useState(0)
 
 
     return (

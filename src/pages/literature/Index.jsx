@@ -2,7 +2,6 @@ import {HomeBanner} from "@/composent/header/Banner.jsx";
 import {SearchBox} from "@/composent/header/SearchBox.jsx";
 import React, {useState} from "react";
 import headerTitle from "@/assets/img/home/home_banner_title.png";
-import {HomeBody} from "@/pages/Home/compose/HomeBody.jsx";
 import {LiteratureBody} from "@/pages/literature/compose/LiteratureBody.jsx";
 
 export function LiteratureIndex() {

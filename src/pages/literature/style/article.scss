@@ -1,0 +1,199 @@
+.literature_article_container {
+  width: 1336px;
+  margin: 0 auto;
+
+  .literature_article_container_nav {
+    margin: 49px 0;
+
+    .literature_article_container_nav_li {
+      display: inline-block;
+      vertical-align: middle;
+
+      .literature_article_container_nav_li_title {
+        font-size: 16px;
+        display: inline-block;
+        vertical-align: middle;
+        color: #102030;
+      }
+    }
+
+  }
+
+  .literature_article_container_title {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+  .literature_article_container_detail {
+    font-size: 18px;
+    color: #102030;
+    margin-bottom: 18px;
+
+    p {
+      padding: 0;
+      display: inline-block;
+      vertical-align: top;
+      width: 80px;
+      text-align: justify;
+      text-align-last: justify;
+      margin: 0 16px 0 0;
+      color: #999999;
+    }
+
+    .literature_article_container_detail_li {
+      padding: 0 20px;
+      height: 20px;
+      vertical-align: middle;
+      display: inline-block;
+      box-sizing: border-box;
+      border-right: 2px solid #707070;
+
+
+    }
+
+    .literature_article_container_detail_info {
+
+      p {
+        width: 80px;
+        text-align: justify;
+        text-align-last: justify;
+        display: inline-block;
+        vertical-align: top;
+        color: #999999;
+      }
+
+      .literature_article_container_detail_info_list {
+        display: inline-block;
+        vertical-align: top;
+
+        .literature_article_container_detail_info_list_li {
+          color: #102030;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .literature_article_container_detail_article {
+      display: inline-block;
+      vertical-align: top;
+      width: 90%;
+      line-height: 2;
+      font-size: 18px;
+    }
+  }
+
+  .literature_article_container_know_bar {
+    width: 1336px;
+    height: 61px;
+    background-image: url("@/assets/img/layout/nav_background.png");
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-radius: 4px 4px 0 0;
+    box-sizing: border-box;
+
+    .literature_article_container_know_bar_title {
+      font-size: 18px;
+      color: #653C02;
+
+    }
+
+    .literature_article_container_know_bar_result {
+      font-size: 16px;
+    }
+  }
+
+  .literature_article_container_body {
+    margin-top: 20px;
+    white-space: nowrap;
+
+
+    .literature_article_container_body_let {
+      display: inline-block;
+      vertical-align: middle;
+
+    }
+
+    .literature_article_container_body_rit {
+      display: inline-block;
+      margin-left: 43px;
+      vertical-align: middle;
+      width: 1000px;
+
+      .literature_article_container_body_rit_li {
+        height: 181px;
+
+        .literature_article_container_body_rit_li_title {
+          height: 35px;
+          line-height: 35px;
+
+          .literature_article_container_body_rit_li_title_title {
+            font-size: 24px;
+            color: #102030;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          .literature_article_container_body_rit_li_title_tag {
+            width: 80px;
+            height: 32px;
+            color: #653C02;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 24px;
+            background-position: center center;
+            background-image: url("@/assets/img/home/knowledge_noactive.png");
+          }
+
+          .literature_article_container_body_rit_li_title_search {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("@/assets/img/home/knowledge_search_icon.png");
+          }
+
+          .literature_article_container_body_rit_li_title_ley {
+            font-size: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+            color: #102030;
+            text-decoration: underline;
+          }
+        }
+
+        .literature_article_container_body_rit_li_detail {
+          margin-top: 24px;
+          font-size: 18px;
+
+
+          .literature_article_container_body_rit_li_detail_content {
+            display: -webkit-box;
+            white-space: normal;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            width: 95%;
+
+            text-overflow: ellipsis;
+            vertical-align: top;
+          }
+
+          span {
+            margin-right: 16px;
+            color: #999999;
+          }
+        }
+      }
+    }
+  }
+}
