@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export function HomeBanner() {
+export function HomeBanner(props) {
     const gatherCheckBoxList = [
         {
             value: "全部",
@@ -45,7 +45,10 @@ export function HomeBanner() {
                     <div className={"banner_container_input_button"}>搜索</div>
                     <div className="triangle"></div>
                 </div>
-                <div className={"banner_container_input_high"}>高级检索</div>
+                <div className={"banner_container_input_high"} onClick={() => {
+                    props.changeCheckbox(true)
+                }}>高级检索
+                </div>
 
             </div>
             <div className={"banner_container_select"}>
