@@ -99,3 +99,65 @@
   }
 
 }
+
+.home_footer_container {
+  width: 100%;
+  height: 160px;
+  background-image: url("@/assets/img/layout/home_footer_back.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .home_footer_container_box {
+    width: 1337px;
+    margin: 0 auto;
+    display: flex;
+    height: 160px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .home_footer_container_logo {
+      width: 1337px;
+      margin: 0 auto;
+      display: inline-block;
+      vertical-align: middle;
+
+      .home_footer_container_logo_img {
+        width: 526px;
+        height: 83px;
+        background-size: cover;
+        background-image: url("@/assets/img/layout/nav_logo.png");
+      }
+
+      .home_footer_container_logo_title {
+        font-size: 16px;
+        color: #653C02;
+        margin-top: 10px;
+      }
+    }
+
+    .home_footer_container_tel {
+      display: inline-block;
+      vertical-align: middle;
+      min-width: 500px;
+      text-align: left;
+
+      .home_footer_container_phone {
+        font-size: 18px;
+
+      }
+
+      .home_footer_container_tel_nav {
+        margin-top: 40px;
+
+        .home_footer_container_tel_nav_li {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 16px;
+          margin-right: 40px;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

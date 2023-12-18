@@ -22,6 +22,8 @@ export function HomeBody() {
     const [knowButtonGroup] = useState(knowButtonList)
     const [knowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
     const [knowViewCardList] = useState(Array(10).fill(undefined, undefined, undefined))
+    const [ChartList] = useState(Array(10).fill(undefined, undefined, undefined))
+    const [assetsList] = useState(Array(4).fill(undefined, undefined, undefined))
 
     return (
         <>
@@ -116,7 +118,7 @@ export function HomeBody() {
                         <div className={"home_body_wenxian_body_arrow"} style={{marginRight: "83px"}}></div>
                         <div className={"home_body_wenxian_body_list"}>
                             {knowViewCardList.map((res, index) => {
-                                return <div className={"home_body_wenxian_body_list_view"}>
+                                return <div key={index} className={"home_body_wenxian_body_list_view"}>
                                     <div className={"home_body_wenxian_body_list_view_image"}></div>
                                     <div className={"home_body_wenxian_body_list_view_title"}>大中华地理志</div>
                                     <div className={"home_body_wenxian_body_list_view_user"}>林传甲 编</div>
@@ -137,10 +139,50 @@ export function HomeBody() {
                         }}></div>
                     </div>
                     <div className={"home_body_wenxian_more_body"}>
-查看更多
+                        查看更多
                     </div>
                 </div>
-
+                <div className={"home_chart_container"}>
+                    <div className={"home_chart_container_title"}></div>
+                    <div className={"home_chart_container_body"}>
+                        <div className={"home_chart_container_arrow"} style={{transform: "rotate(180deg)"}}></div>
+                        <div className={"home_chart_container_list"}>
+                            {ChartList.map((res, index) => {
+                                return <div key={index} className={"home_chart_container_list_li"}>
+                                    <div className={"home_chart_container_list_li_image_card"}>
+                                        <div className={"home_chart_container_list_li_image"}></div>
+                                    </div>
+                                    <div className={"home_chart_container_list_li_type"}>
+                                        <div className={"home_chart_container_list_li_type_title"}>类型
+                                            <span>统计表</span>
+                                        </div>
+                                        <div className={"home_chart_container_list_li_type_pre"}>
+                                            <div className={"home_chart_container_list_li_type_pre_icon"}></div>
+                                            <div className={"home_chart_container_list_li_type_pre_number"}>342</div>
+                                        </div>
+                                    </div>
+                                    <div className={"home_chart_container_list_li_title"}>附南京市市區面積表</div>
+                                </div>
+                            })}
+                        </div>
+                        <div className={"home_chart_container_arrow"}></div>
+                    </div>
+                    <div className={"home_chart_container_button"}>查看更多</div>
+                </div>
+                <div className={"home_assets_type"}>
+                    <div className={"home_assets_type_title"}></div>
+                    <div className={"home_assets_type_list"}>
+                        {assetsList.map((item, index) => (
+                            <div key={index} className={"home_assets_type_list_li"}>
+                                <div className={"home_assets_type_list_li_title"}>文献</div>
+                                <div className={"home_assets_type_list_li_info"}>
+                                    汇聚国图民国时期出版的区域志（通志、省志、州志、县志）及专业志共82种、300余册，涵盖xx个地区，为研究民国时期地方山川地貌、政治经济、历史文化、物产风俗提供图像、文本、目录等多种基础资源地检索与阅览。
+                                </div>
+                                <div className={"home_assets_type_list_li_button"}>查看更多</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </>
     )
