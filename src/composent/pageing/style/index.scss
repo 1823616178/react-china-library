@@ -1,0 +1,77 @@
+.pageing_container {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+
+  .pageing_container_arrow {
+    background-image: url("@/assets/img/layout/pageing_arrow.png");
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 35px;
+    margin-right: 25px;
+    cursor: pointer;
+
+  }
+
+  .pageing_container_num {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 25px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    transition: all .3s;
+
+    &:hover {
+      background-color: #b2806c;
+      color: #FFFFFF;
+    }
+  }
+
+  .pageing_container_total {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 25px;
+    letter-spacing: 2px;
+  }
+
+  .pageing_container_jump_title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 25px;
+  }
+
+  .pageing_container_jump_input {
+    display: inline-block;
+    margin-right: 25px;
+    vertical-align: middle;
+    width: 50px;
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid #653C02;
+    padding: 0 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    user-select: auto;
+    border-radius: 5px;
+  }
+
+  .pageing_container_jump_button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50px;
+    cursor: pointer;
+    background-color: #653C02;
+    color: #FFFFFF;
+    border-radius: 5px;
+  }
+}

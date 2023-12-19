@@ -1,5 +1,7 @@
 .literature_chart_container {
   margin-top: 40px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
 
   .literature_article_container_know_bar {
     width: 1336px;
@@ -21,6 +23,24 @@
 
     .literature_article_container_know_bar_result {
       font-size: 16px;
+    }
+  }
+
+  .literature_chart_container_list {
+    margin-top: 20px;
+    white-space: nowrap;
+
+
+    .literature_chart_container_list_let {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .literature_chart_container_list_rit {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 14px;
+
     }
   }
 }

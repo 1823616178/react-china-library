@@ -1,0 +1,84 @@
+.chart_list_container {
+  .literature_chart_container_list_rit_li {
+    white-space: nowrap;
+    margin-bottom: 14px;
+
+    .literature_chart_container_list_rit_li_image {
+      height: 180px;
+      display: inline-block;
+      vertical-align: top;
+      width: 140px;
+      background-image: url("@/assets/img/literature/article_tab_image.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      padding-top: 24px;
+      box-sizing: border-box;
+
+      .literature_chart_container_list_rit_li_image_content {
+        background-image: url("@/assets/img/home/001.jpg");
+        width: 99px;
+        height: 132px;
+        margin: 0 auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-sizing: border-box;
+
+      }
+    }
+
+    .literature_chart_container_list_rit_li_info {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 30px;
+
+      .literature_chart_container_list_rit_li_title {
+        color: #102030;
+        font-size: 24px;
+      }
+
+      .literature_chart_container_list_rit_li_cate {
+        font-size: 16px;
+        display: inline-block;
+        vertical-align: top;
+        height: 25px;
+        line-height: 25px;
+        margin-top: 20px;
+
+        span {
+          width: 80px;
+          text-align: justify;
+          text-align-last: justify;
+          margin-right: 16px;
+          display: inline-block;
+          height: 25px;
+          line-height: 25px;
+          vertical-align: top;
+          color: #999999;
+        }
+      }
+
+      .literature_chart_container_list_rit_li_chart {
+        margin-top: 20px;
+        white-space: nowrap;
+
+        .literature_chart_container_list_rit_li_chart_type {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 16px;
+          padding: 0 24px;
+          border-right: 1px solid #707070;
+
+          span {
+            width: 80px;
+            display: inline-block;
+            text-align: justify;
+            text-align-last: justify;
+            margin-right: 16px;
+            color: #999999;
+          }
+        }
+      }
+    }
+  }
+}

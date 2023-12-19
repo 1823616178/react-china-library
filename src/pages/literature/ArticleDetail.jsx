@@ -3,6 +3,7 @@ import activeTabImage from "@/assets/img/literature/tab_back.png";
 import './style/article.scss'
 import {LiteratureChart} from "@/pages/literature/compose/LiteratureChart.jsx";
 import {LeftNavBox} from "@/composent/LeftNavbox/LeftNavBox.jsx";
+import {Pageing} from "@/composent/pageing/Pageing.jsx";
 
 export const LiteratureArticleDetail = () => {
 
@@ -101,6 +102,9 @@ export const LiteratureArticleDetail = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div style={{marginTop: "20px"}}>
+                    <Pageing></Pageing>
                 </div>
             </div>
             <LiteratureChart/>
