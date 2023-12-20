@@ -4,9 +4,9 @@ import './style/article.scss'
 import {LiteratureChart} from "@/pages/literature/compose/LiteratureChart.jsx";
 import {LeftNavBox} from "@/composent/LeftNavbox/LeftNavBox.jsx";
 import {Pageing} from "@/composent/pageing/Pageing.jsx";
+import {KnowledgeList} from "@/composent/KnowledgeList/KnowledgeList.jsx";
 
 export const LiteratureArticleDetail = () => {
-
     return (
         <div className={"literature_article_container"}>
             <div className={"literature_article_container_nav"}>
@@ -81,27 +81,9 @@ export const LiteratureArticleDetail = () => {
                     <LeftNavBox/>
                 </div>
                 <div className={"literature_article_container_body_rit"}>
-                    <div className={"literature_article_container_body_rit_li"}>
-                        <div className={"literature_article_container_body_rit_li_title"}>
-                            <div className={"literature_article_container_body_rit_li_title_title"}>林传甲</div>
-                            <div className={"literature_article_container_body_rit_li_title_tag"}>人物</div>
-                            <div className={"literature_article_container_body_rit_li_title_search"}></div>
-                            <div className={"literature_article_container_body_rit_li_title_ley"}>作为关键词查找</div>
-                        </div>
-                        <div className={"literature_article_container_body_rit_li_detail"}>
-                            <span>知识出处</span>
-                            <span style={{color: "#E36A39", textDecoration: 'underline'}}>大中華湖北省地理志</span>
-                        </div>
-                        <div className={"literature_article_container_body_rit_li_detail"}>
-                            <div className={"literature_article_container_body_rit_li_detail_content"}>
-                                <span>人物传略</span>
-                                唐成都人。精術數。官火井令。嘗精術數。官火井令。嘗精術數。官火井令。嘗至閬州。寓盘龍山。
-                                唐成都人。精術數。官火井令。嘗至閬州。寓盘龍山。 唐成都人。精術數。官火井令。嘗至閬州。寓盘龍山。
-                                唐成都人。精術數。官火井令。嘗至閬州。寓盘龍山。 唐成都人。精術數。官火井令。嘗至閬州。寓盘龍山。
-                                唐成都人。精術數。官火井令。嘗至閬州。寓盘龍山。
-                            </div>
-                        </div>
-                    </div>
+                    <KnowledgeList>
+
+                    </KnowledgeList>
                 </div>
                 <div style={{marginTop: "20px"}}>
                     <Pageing></Pageing>

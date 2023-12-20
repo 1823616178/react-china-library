@@ -1,0 +1,71 @@
+.literature_article_container_body_rit_li {
+  padding: 20px 0;
+
+  .literature_article_container_body_rit_li_title {
+    height: 35px;
+    line-height: 35px;
+
+    .literature_article_container_body_rit_li_title_title {
+      font-size: 24px;
+      color: #102030;
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .literature_article_container_body_rit_li_title_tag {
+      width: 80px;
+      height: 32px;
+      color: #653C02;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 32px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0 24px;
+      background-position: center center;
+      background-image: url("@/assets/img/home/knowledge_noactive.png");
+    }
+
+    .literature_article_container_body_rit_li_title_search {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      vertical-align: middle;
+      background-image: url("@/assets/img/home/knowledge_search_icon.png");
+    }
+
+    .literature_article_container_body_rit_li_title_ley {
+      font-size: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+      color: #102030;
+      text-decoration: underline;
+    }
+  }
+
+  .literature_article_container_body_rit_li_detail {
+    margin-top: 24px;
+    font-size: 18px;
+
+
+    .literature_article_container_body_rit_li_detail_content {
+      display: -webkit-box;
+      white-space: normal;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      width: 95%;
+
+      text-overflow: ellipsis;
+      vertical-align: top;
+    }
+
+    span {
+      margin-right: 16px;
+      color: #999999;
+    }
+  }
+}
