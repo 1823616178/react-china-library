@@ -161,6 +161,9 @@
 
         .home_body_knowledge_head_radio {
           display: inline-block;
+          margin: 0;
+          padding: 0;
+          margin-right: 10px;
           vertical-align: middle;
         }
 
@@ -172,110 +175,6 @@
     }
   }
 
-  .home_body_knowledge_box {
-    margin-top: 48px;
-
-    .home_body_knowledge_box_container {
-      display: inline-block;
-      vertical-align: middle;
-      width: 334px;
-      height: 290px;
-      border-right: 1px solid rgba(0, 0, 0, 0.16);
-      padding: 20px 30px;
-      box-sizing: border-box;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.16);
-
-      &:nth-child(1),
-      &:nth-child(2),
-      &:nth-child(3),
-      &:nth-child(4) {
-        border-top: 1px solid rgba(0, 0, 0, 0.16);
-      }
-
-      &:nth-child(4n+1) {
-        border-left: 1px solid rgba(0, 0, 0, 0.16);
-      }
-
-      .home_body_knowledge_box_header {
-        .home_body_knowledge_box_header_left {
-          height: 137px;
-          display: inline-block;
-          vertical-align: top;
-
-          .home_body_knowledge_box_title {
-            font-size: 24px;
-            display: inline-block;
-            vertical-align: middle;
-            color: #653F18;
-            font-weight: bold;
-            line-height: 137px;
-
-            &:before {
-              position: absolute;
-              font-size: 80px;
-              color: rgba(178, 128, 108, 0.3);
-              content: "D";
-              margin-left: -6px;
-              margin-top: -20px;
-            }
-          }
-
-          .home_body_knowledge_icon {
-            width: 24px;
-            height: 24px;
-            background-image: url("@/assets/img/home/knowledge_search_icon.png");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-            margin-left: 18px;
-            display: inline-block;
-            vertical-align: middle;
-          }
-        }
-
-        .home_body_knowledge_box_header_rit {
-          display: inline-block;
-          vertical-align: top;
-          float: right;
-
-          .home_body_knowledge_box_header_left_icon {
-            width: 18px;
-            height: 18px;
-            background-position: center center;
-            background-repeat: no-repeat;
-            display: inline-block;
-            vertical-align: middle;
-            background-image: url("@/assets/img/home/knowEyes.png");
-          }
-
-          .home_body_knowledge_box_header_left_num {
-            color: #999999;
-            display: inline-block;
-            vertical-align: middle;
-          }
-        }
-      }
-
-      .home_body_knowledge_box_info {
-        .home_body_knowledge_box_info_detail {
-          line-height: 2;
-          color: #102030;
-          font-size: 16px;
-          overflow: hidden;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          text-overflow: ellipsis;
-          white-space: normal;
-
-          span {
-            margin-right: 10px;
-            color: #999999;
-          }
-        }
-      }
-    }
-  }
 
   .home_body_knowledge_next {
     margin-top: 44px;
@@ -479,6 +378,7 @@
               height: 320px;
               margin: 0 auto;
               background-image: url("@/assets/img/home/001.jpg");
+              background-size: contain;
             }
 
 

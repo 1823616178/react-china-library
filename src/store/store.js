@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {counterSlicer} from "@/store/module";
+import {appSlicer} from "@/store/module";
 
 export default configureStore({
     reducer: {
-        counter: counterSlicer.reducer
+        app: appSlicer.reducer
     }
 })
 

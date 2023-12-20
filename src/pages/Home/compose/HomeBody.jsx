@@ -1,5 +1,7 @@
 import '../style/homeBody.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {listByViewsOrder} from "@/api/home.js";
+import {KnowledgeList} from "@/pages/Home/compose/KnowledgeList.jsx";
 
 export function HomeBody() {
     const relationDat = [
@@ -10,20 +12,34 @@ export function HomeBody() {
         {title: "志书物产专题分析", img: "home_relation.png"},
         {title: "地理-人物关联分析", img: "home_relation.png"},
     ]
-    const knowButtonList = [
-        {title: "人物", key: "1"},
-        {title: "机构", key: "2"},
-        {title: "事件", key: "3"},
-        {title: "地名", key: "4"},
-        {title: "物产", key: "5"},
-    ]
-
     const [relationList] = useState(relationDat)
-    const [knowButtonGroup] = useState(knowButtonList)
-    const [knowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
+    const [knowDetailCardList, setKnowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
     const [knowViewCardList] = useState(Array(10).fill(undefined, undefined, undefined))
     const [ChartList] = useState(Array(10).fill(undefined, undefined, undefined))
     const [assetsList] = useState(Array(4).fill(undefined, undefined, undefined))
+    let knowDetailQuery = {
+        page: 1,
+        rows: 8,
+        type: 1,
+        index: 2
+    }
+    const [{data: OrderList, loading, error}, refetch] = listByViewsOrder(knowDetailQuery)
+
+    /**
+     * 获取知识列表
+     * @returns {Promise<void>}
+     */
+    const getKnowDetailData = async () => {
+
+    }
+
+    const Init = async () => {
+        await getKnowDetailData()
+    }
+
+    useEffect(() => {
+        setKnowDetailCardList(OrderList ? OrderList?.data?.rows : [])
+    }, [OrderList]);
 
     return (
         <>
@@ -52,66 +68,7 @@ export function HomeBody() {
                 ))}
             </div>
             <div className={"home_body_knowledge_container"}>
-                <div className={"home_body_knowledge_title"}></div>
-                <div className={"home_body_knowledge_head"}>
-                    <div className={"home_body_knowledge_button_group"}>
-                        {knowButtonGroup.map((res, index) => {
-                            return (
-                                <div className={"home_body_knowledge_button"} key={index}>{res.title}</div>
-                            )
-                        })}
-                    </div>
-                    <div className={"home_body_knowledge_head_radio_group"}>
-                        <label>
-                            <input type={"radio"} className={"home_body_knowledge_head_radio"}></input>
-                            <span>按浏览量排列</span>
-                        </label>
-                        <label>
-                            <input type={"radio"} className={"home_body_knowledge_head_radio"}></input>
-                            <span>
-                            按关联知识量排列
-                        </span>
-                        </label>
-                    </div>
-                </div>
-                <div className={"home_body_knowledge_box"}>
-                    {knowDetailCardList.map((res, index) => {
-                        return (
-                            <div key={index} className={"home_body_knowledge_box_container"}>
-                                <div className={"home_body_knowledge_box_header"}>
-                                    <div className={"home_body_knowledge_box_header_left"}>
-                                        <div className={"home_body_knowledge_box_title"}>杜甫</div>
-                                        <div className={"home_body_knowledge_icon"}></div>
-                                    </div>
-                                    <div className={"home_body_knowledge_box_header_rit"}>
-                                        <div className={"home_body_knowledge_box_header_left_icon"}></div>
-                                        <div className={"home_body_knowledge_box_header_left_num"}>1231</div>
-                                    </div>
-                                </div>
-                                <div className={"home_body_knowledge_box_info"}>
-                                    <div className={"home_body_knowledge_box_info_detail"}>
-                                        <span>时代</span>唐
-                                    </div>
-                                    <div className={"home_body_knowledge_box_info_detail"}>
-                                        <span>时代</span>杜甫字子美。唐襄陽人。膳部郞 審言孫。至德乾元間。以拾遺出爲華州
-                                        司功。屬關輔機。輒棄123123123131313131231231312312312拾遺出爲華州
-                                        司功。屬關輔機。輒棄123123123131313131231231312312312拾遺出爲華州
-                                        司功。屬關輔機。輒棄123123123131313131231231312312312拾遺出爲華州
-                                        司功。屬關輔機。輒棄123123123131313131231231312312312
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className={"home_body_knowledge_next"}>
-                    <div className={"home_body_knowledge_next_button"}>
-                        换一批
-                    </div>
-                    <div className={"home_body_knowledge_next_button"}>
-                        换一批
-                    </div>
-                </div>
+                <KnowledgeList></KnowledgeList>
                 <div className={"home_body_wenxian"}>
                     <div className={"home_body_wenxian_title"}></div>
                     <div className={"home_body_wenxian_body"}>

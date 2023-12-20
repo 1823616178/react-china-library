@@ -1,22 +1,21 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export const counterSlicer = createSlice({
-    name: "counter",
+export const appSlicer = createSlice({
+    name: "app",
     initialState: {
-        value: 0,
-        todos: [1, 2, 3]
+        token: "",
     },
     reducers: {
-        increment: (state) => {
-            state.value += 1
+        userLogin() {
+
         },
-        decrement: (state) => {
-            state.value -= 1
+        getUserInfo() {
+
         },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload
+        setToken(state, value) {
+            state.token = value
         }
     }
 })
 
-export const {increment, decrement, incrementByAmount} = counterSlicer.actions;
+export const {userLogin, getUserInfo} = appSlicer.actions;
