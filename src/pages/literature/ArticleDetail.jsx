@@ -81,9 +81,7 @@ export const LiteratureArticleDetail = () => {
                     <LeftNavBox/>
                 </div>
                 <div className={"literature_article_container_body_rit"}>
-                    <KnowledgeList>
-
-                    </KnowledgeList>
+                    <KnowledgeList></KnowledgeList>
                 </div>
                 <div style={{marginTop: "20px"}}>
                     <Pageing></Pageing>

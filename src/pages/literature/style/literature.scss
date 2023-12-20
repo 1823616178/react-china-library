@@ -1,116 +1,11 @@
 .Literature_container_rit {
   display: inline-block;
   vertical-align: top;
+  margin-left: 18px;
+
   .Literature_container_rit_body {
     white-space: nowrap;
     overflow: hidden;
-
-
-    .Literature_container_rit_body_li {
-      width: 1058px;
-      box-sizing: border-box;
-      margin-top: 14px;
-
-      .Literature_container_rit_body_li_image {
-        display: inline-block;
-        vertical-align: middle;
-        background-image: url("@/assets/img/literature/article_tab_image.png");
-        width: 140px;
-        height: 180px;
-
-        .Literature_container_rit_body_li_image_img {
-          width: 99px;
-          height: 132px;
-          background-image: url("@/assets/img/home/001.jpg");
-          background-position: center center;
-          background-size: cover;
-          margin: 24px auto 0;
-        }
-      }
-
-      .Literature_container_rit_body_li_info {
-        display: inline-block;
-        vertical-align: top;
-        margin-left: 24px;
-
-        .Literature_container_rit_body_li_info_title {
-          display: inline-block;
-          vertical-align: middle;
-
-          .Literature_container_rit_body_li_info_title_span {
-            font-size: 24px;
-            display: inline-block;
-            vertical-align: middle;
-            color: #102030;
-          }
-
-          .Literature_container_rit_body_li_info_title_icon {
-            display: inline-block;
-            margin-left: 30px;
-            vertical-align: middle;
-
-            .Literature_container_rit_body_li_info_title_icon_te {
-              color: #102030;
-              display: inline-block;
-              vertical-align: middle;
-              font-size: 16px;
-            }
-
-            .Literature_container_rit_body_li_info_title_icon_img {
-              display: inline-block;
-              margin-right: 4px;
-              vertical-align: middle;
-              background-image: url("@/assets/img/literature/atricle_coll_start.png");
-              width: 21px;
-              height: 21px;
-            }
-          }
-        }
-
-        .Literature_container_rit_body_li_info_detail {
-          white-space: nowrap;
-          margin-top: 10px;
-
-          .Literature_container_rit_body_li_info_detail_tag {
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 16px;
-            line-height: 2;
-            white-space: nowrap;
-
-            .Literature_container_rit_body_li_info_detail_tag_name {
-              display: inline-block;
-              vertical-align: middle;
-              color: #999999;
-              margin-right: 16px;
-            }
-
-            .Literature_container_rit_body_li_info_detail_tag_title {
-              display: inline-block;
-              vertical-align: middle;
-              color: #102030;
-
-              .Literature_container_rit_body_li_info_detail_tag_title_over {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                width: 80%;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-            }
-
-            .Literature_container_rit_body_li_info_detail_tag_line {
-              display: inline-block;
-              vertical-align: middle;
-              height: 18px;
-              width: 1px;
-              margin: 0 16px;
-              background-color: #707070;
-            }
-          }
-        }
-      }
-    }
+    width: 1058px;
   }
 }

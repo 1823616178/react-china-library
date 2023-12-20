@@ -1,0 +1,79 @@
+.Literature_container_left_fenlei {
+  margin-top: 16px;
+
+
+  .Literature_container_left_fenlei_head {
+    height: 48px;
+    line-height: 48px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 30px;
+    background-image: url("@/assets/img/layout/nav_background.png");
+    border: 1px solid #B2806C;
+
+    .Literature_container_left_fenlei_head_title {
+      font-size: 18px;
+      display: inline-block;
+      color: #653C02;
+      vertical-align: middle;
+    }
+
+    .Literature_container_left_fenlei_head_icon {
+      width: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      height: 10px;
+      background-image: url("@/assets/img/literature/tab_arrow.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .Literature_container_left_fenlei_body {
+    width: 260px;
+    border-left: 1px solid #653C02;
+    border-right: 1px solid #653C02;
+    border-bottom: 1px solid #653C02;
+    background: white;
+    padding: 24px 35px 0;
+    box-sizing: border-box;
+
+    .Literature_container_left_fenlei_body_li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+      justify-content: space-between;
+      cursor: pointer;
+
+      .Literature_container_left_fenlei_body_li_icon {
+        width: 8px;
+        height: 15px;
+        background-image: url("@/assets/img/literature/back_arrow_tag.png");
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        vertical-align: middle;
+      }
+
+      .Literature_container_left_fenlei_body_li_title {
+        width: 60%;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        color: #653C02;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .Literature_container_left_fenlei_body_li_num {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
