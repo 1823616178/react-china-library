@@ -21,6 +21,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response) => response,
     async (error) => {
+        console.log(error)
         const config = error.config;
         if (error.response.status === 401 && !config._retry) {
             // we use this flag to avoid retrying indefinitely if

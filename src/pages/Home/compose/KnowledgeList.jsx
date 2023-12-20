@@ -6,27 +6,33 @@ import activeButtonImage from '@/assets/img/home/know_button.png'
 export function KnowledgeList() {
     const [knowDetailCardList, setKnowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
     const knowButtonList = [
-        {title: "人物", key: 0},
-        {title: "机构", key: 1},
-        {title: "事件", key: 2},
-        {title: "地名", key: 3},
-        {title: "物产", key: 4},
+        {title: "人物", key: 1},
+        {title: "机构", key: 2},
+        {title: "事件", key: 3},
+        {title: "地名", key: 4},
+        {title: "物产", key: 5},
     ]
-    const [knowRadio, setKnowRadio] = useState(0)
+
+    const [knowRadio, setKnowRadio] = useState(1)
     const [knowButtonGroup] = useState(knowButtonList)
-    const [tagIndex, setTagIndex] = useState(0)
+    const [tagIndex, setTagIndex] = useState(1)
     let knowDetailQuery = {
         page: 1,
         rows: 8,
-        type: 1,
-        index: 0
+        type: tagIndex,
+        index: knowRadio
     }
     const [{data: OrderList, loading, error}, refetch] = listByViewsOrder(knowDetailQuery)
-
     useEffect(() => {
         setKnowDetailCardList(OrderList ? OrderList?.data?.rows : [])
     }, [OrderList]);
 
+    useEffect(() => {
+        refetch()
+    }, [knowRadio, tagIndex]);
+    const changeRadioFunc = (index) => {
+        setKnowRadio(index)
+    }
     return (
         <>
             <div className={"home_body_knowledge_title"}></div>
@@ -45,20 +51,20 @@ export function KnowledgeList() {
                 <div className={"home_body_knowledge_head_radio_group"}>
                     <label>
                         <input type={"radio"} value={1} checked={knowRadio === 1}
-                               onClick={() => {
-                                   setKnowRadio(1)
+                               onChange={() => {
+                                   changeRadioFunc(1)
                                }}
                                className={"home_body_knowledge_head_radio"}></input>
-                        <span>按浏览量排列</span>
+                        <span>按浏览量排序</span>
                     </label>
                     <label>
                         <input type={"radio"} value={2} checked={knowRadio === 2}
-                               onClick={() => {
-                                   setKnowRadio(2)
+                               onChange={() => {
+                                   changeRadioFunc(2)
                                }}
                                className={"home_body_knowledge_head_radio"}></input>
                         <span>
-                            按关联知识量排列
+                            按推荐排序
                         </span>
                     </label>
                 </div>
