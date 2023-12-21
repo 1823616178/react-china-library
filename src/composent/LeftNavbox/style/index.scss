@@ -32,6 +32,8 @@
       width: 260px;
       overflow: hidden;
       background-size: cover;
+      display: flex;
+      justify-content: space-between;
       background-position: center center;
       padding: 0 30px;
       box-sizing: border-box;
@@ -51,7 +53,6 @@
       .Literature_container_left_head_body_tab_font {
         display: inline-block;
         vertical-align: middle;
-        width: 80%;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
@@ -59,6 +60,7 @@
 
       .Literature_container_left_head_body_tab_font_num {
         display: inline-block;
+        text-align: right;
         vertical-align: middle;
       }
     }

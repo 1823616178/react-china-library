@@ -1,0 +1,60 @@
+.knowledge_list_container_let_type {
+  border-bottom: 1px solid #b2806c;
+
+  .knowledge_list_container_let_type_title {
+    width: 260px;
+    height: 60px;
+    overflow: hidden;
+    background-image: url("@/assets/img/layout/nav_background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #653C02;
+    line-height: 60px;
+    padding: 0 30px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 1px solid #b2806c;
+  }
+
+  .knowledge_list_container_let_type_title_body {
+    padding: 20px 34px;
+    box-sizing: border-box;
+    border-left: 1px solid #b2806c;
+    border-right: 1px solid #b2806c;
+
+    .knowledge_list_container_let_type_title_body_checkbox {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      margin-top: 25px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      label {
+        user-select: none;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+
+        input {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        span {
+          margin-left: 10px;
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 18px;
+        }
+      }
+
+      .knowledge_list_container_let_type_title_body_checkbox_num {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}

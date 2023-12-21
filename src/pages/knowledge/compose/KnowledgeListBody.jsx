@@ -2,14 +2,37 @@ import '../style/KnowledgeListBody.scss'
 import {ListHeader} from "@/composent/ListHeader/ListHeader.jsx";
 import {KnowledgeList} from "@/composent/KnowledgeList/KnowledgeList.jsx";
 import {useEffect, useState} from "react";
-import {knowledgeTypeList} from "@/utils/common.js";
+import {calculateKnowList, knowledgeTypeList, packageAdvanceList} from "@/utils/common.js";
+import {TypeSelect} from "@/composent/TypeSelect/TypeSelect.jsx";
+import {LeftNavBox} from "@/composent/LeftNavbox/LeftNavBox.jsx";
+import {advancedRetrievalParams, getFirstTypeCountForHighSearch} from "@/api/knowledge.js";
+import {advancedQuery, firstQuery} from "@/pages/knowledge/js/common.js";
 
 export function KnowledgeListBody() {
-    const [typeList] = useState(knowledgeTypeList)
+    const [selectTag, setSelectTag] = useState(0)
+    const [typeList, setTypeList] = useState([])
+    const [advanceList, setAdvanceList] = useState([])
+
     let allEnglishLetter = Array.from({length: 26}, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
     let [letterList] = useState(allEnglishLetter)
+
+
+    const [{data: knowLedgeTypeNumber, loading}, refetch] = getFirstTypeCountForHighSearch(firstQuery)
+    const [{
+        data: advanceParams,
+        advancedLoading,
+        advancedError
+    }, advancedRefetch] = advancedRetrievalParams(advancedQuery)
+
     useEffect(() => {
-    }, []);
+        calculateKnowList(knowLedgeTypeNumber?.data || [], setTypeList)
+    }, [knowLedgeTypeNumber])
+
+    useEffect(() => {
+        packageAdvanceList(advanceParams?.data || [], setAdvanceList)
+        console.log(advanceList)
+    }, [advanceParams]);
+
     const moreHeaderSlotCompose = () => {
         return (
             <div className={"knowledge_list_container_rit_list_obj"}>
@@ -21,19 +44,15 @@ export function KnowledgeListBody() {
     return (
         <div className={"knowledge_list_container"}>
             <div className={"knowledge_list_container_let"}>
-                <div className={"knowledge_list_container_let_type"}>
-                    <div className={"knowledge_list_container_let_type_title"}>知识类型</div>
-                    <div className={"knowledge_list_container_let_type_title_body"}>
-                        {typeList.map((res, index) => {
-                            return <div key={index} className={"knowledge_list_container_let_type_title_body_checkbox"}>
-                                <label>
-                                    <input type={"checkbox"}/>
-                                    <span>{res.title}</span>
-                                </label>
-                                <div className={"knowledge_list_container_let_type_title_body_checkbox_num"}>(12)</div>
-                            </div>
-                        })}
-                    </div>
+                <LeftNavBox selectTag={selectTag}
+                            title={"知识类型"}
+                            assetsList={typeList}
+                            setTag={setSelectTag}></LeftNavBox>
+                <div style={{marginTop: "20px"}}>
+                    <LeftNavBox selectTag={selectTag}
+                                title={"建设单位"}
+                                assetsList={typeList}
+                                setTag={setSelectTag}></LeftNavBox>
                 </div>
             </div>
             <div className={"knowledge_list_container_rit"}>
@@ -52,7 +71,6 @@ export function KnowledgeListBody() {
                     <KnowledgeList moreHeaderSlot={moreHeaderSlotCompose()}></KnowledgeList>
                 </div>
             </div>
-
         </div>
     )
 }
