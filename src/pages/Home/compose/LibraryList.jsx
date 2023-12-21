@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {selectBookTempOrderByViews} from "@/api/home.js";
 import {useNavigate} from "react-router";
+import '../style/LibrayStyle.scss'
 
 export const LibraryList = () => {
     const [knowViewCardList, setKnowViewCardList] = useState([])
