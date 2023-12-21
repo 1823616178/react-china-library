@@ -4,6 +4,7 @@ import {listByViewsOrder} from "@/api/home.js";
 import {KnowledgeList} from "@/pages/Home/compose/KnowledgeList.jsx";
 import {LibraryList} from "@/pages/Home/compose/LibraryList.jsx";
 import {ChartList} from "@/pages/Home/compose/ChartList.jsx";
+import {AssetList} from "@/pages/Home/compose/AssetList.jsx";
 
 export function HomeBody() {
     const relationDat = [
@@ -16,7 +17,6 @@ export function HomeBody() {
     ]
     const [relationList] = useState(relationDat)
     const [knowDetailCardList, setKnowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
-    const [assetsList] = useState(Array(4).fill(undefined, undefined, undefined))
     let knowDetailQuery = {
         page: 1,
         rows: 8,
@@ -71,20 +71,7 @@ export function HomeBody() {
                 <KnowledgeList></KnowledgeList>
                 <LibraryList></LibraryList>
                 <ChartList></ChartList>
-                <div className={"home_assets_type"}>
-                    <div className={"home_assets_type_title"}></div>
-                    <div className={"home_assets_type_list"}>
-                        {assetsList.map((item, index) => (
-                            <div key={index} className={"home_assets_type_list_li"}>
-                                <div className={"home_assets_type_list_li_title"}>文献</div>
-                                <div className={"home_assets_type_list_li_info"}>
-                                    汇聚国图民国时期出版的区域志（通志、省志、州志、县志）及专业志共82种、300余册，涵盖xx个地区，为研究民国时期地方山川地貌、政治经济、历史文化、物产风俗提供图像、文本、目录等多种基础资源地检索与阅览。
-                                </div>
-                                <div className={"home_assets_type_list_li_button"}>查看更多</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <AssetList></AssetList>
             </div>
         </>
     )

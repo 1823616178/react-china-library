@@ -1,9 +1,20 @@
 import '../style/Chartlist.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {selectChartSourceList} from "@/api/home.js";
 
 export const ChartList = () => {
-    const [ChartList] = useState(Array(10).fill(undefined, undefined, undefined))
+    const [ChartList, setChatList] = useState([])
+    const query = {
+        page: 1,
+        rows: 10,
+        sort: "isHot,orderNum,rid",
+        order: "desc"
+    }
+    const [{data: chartData, loading, error}, refetch] = selectChartSourceList(query)
 
+    useEffect(() => {
+        setChatList(chartData?.data?.rows || [])
+    }, [chartData]);
     return (
         <div className={"home_chart_container"}>
             <div className={"home_chart_container_title"}></div>

@@ -20,3 +20,15 @@ export function selectBookTempOrderByViews(data) {
         params: data
     })
 }
+
+/**
+ * 获取图表列表
+ * @param data
+ */
+export function selectChartSourceList(data) {
+    return useAxios({
+        url: "/chartApi/selectChartSourceList",
+        method: "POST",
+        params: data
+    })
+}
