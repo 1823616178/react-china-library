@@ -2,6 +2,7 @@ import '../style/homeBody.scss'
 import {useEffect, useState} from "react";
 import {listByViewsOrder} from "@/api/home.js";
 import {KnowledgeList} from "@/pages/Home/compose/KnowledgeList.jsx";
+import {LibraryList} from "@/pages/Home/compose/LibraryList.jsx";
 
 export function HomeBody() {
     const relationDat = [
@@ -14,7 +15,6 @@ export function HomeBody() {
     ]
     const [relationList] = useState(relationDat)
     const [knowDetailCardList, setKnowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
-    const [knowViewCardList] = useState(Array(10).fill(undefined, undefined, undefined))
     const [ChartList] = useState(Array(10).fill(undefined, undefined, undefined))
     const [assetsList] = useState(Array(4).fill(undefined, undefined, undefined))
     let knowDetailQuery = {
@@ -69,36 +69,7 @@ export function HomeBody() {
             </div>
             <div className={"home_body_knowledge_container"}>
                 <KnowledgeList></KnowledgeList>
-                <div className={"home_body_wenxian"}>
-                    <div className={"home_body_wenxian_title"}></div>
-                    <div className={"home_body_wenxian_body"}>
-                        <div className={"home_body_wenxian_body_arrow"} style={{marginRight: "83px"}}></div>
-                        <div className={"home_body_wenxian_body_list"}>
-                            {knowViewCardList.map((res, index) => {
-                                return <div key={index} className={"home_body_wenxian_body_list_view"}>
-                                    <div className={"home_body_wenxian_body_list_view_image"}></div>
-                                    <div className={"home_body_wenxian_body_list_view_title"}>大中华地理志</div>
-                                    <div className={"home_body_wenxian_body_list_view_user"}>林传甲 编</div>
-                                    <div className={"home_body_wenxian_body_list_view_date"}>
-                                        <div className={"home_body_wenxian_body_list_view_date_text"}>1920.01.10</div>
-                                        <div className={"home_body_wenxian_body_list_view_date_pre"}>
-                                            <div className={"home_body_wenxian_body_list_view_date_pre_image"}></div>
-                                            <div className={"home_body_wenxian_body_list_view_date_pre_title"}>1232
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            })}
-                        </div>
-                        <div className={"home_body_wenxian_body_arrow"} style={{
-                            transform: "rotate(180deg)",
-                            marginLeft: "83px"
-                        }}></div>
-                    </div>
-                    <div className={"home_body_wenxian_more_body"}>
-                        查看更多
-                    </div>
-                </div>
+                <LibraryList></LibraryList>
                 <div className={"home_chart_container"}>
                     <div className={"home_chart_container_title"}></div>
                     <div className={"home_chart_container_body"}>

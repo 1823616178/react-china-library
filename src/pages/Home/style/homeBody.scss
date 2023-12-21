@@ -185,6 +185,7 @@
       height: 51px;
       display: inline-block;
       vertical-align: middle;
+      cursor: pointer;
       background-size: contain;
       background-image: url("@/assets/img/home/home_jiansuo_button.png");
       background-repeat: no-repeat;
@@ -217,6 +218,7 @@
       justify-content: space-between;
 
       .home_body_wenxian_body_arrow {
+        cursor: pointer;
         background-image: url("@/assets/img/home/home_jiansuo_arrow.png");
         height: 65px;
         width: 65px;
@@ -234,6 +236,7 @@
         .home_body_wenxian_body_list_view {
           width: 292px;
           height: 474px;
+          transition: all .3s;
           margin-right: 82px;
           background-image: url("@/assets/img/home/home_wenxian_image.png");
           background-repeat: no-repeat;
@@ -242,7 +245,7 @@
           display: inline-block;
           vertical-align: middle;
 
-          &:nth-child(3n) {
+          &:last-child {
             margin-right: 0;
           }
 
@@ -264,8 +267,8 @@
           }
 
           .home_body_wenxian_body_list_view_user {
-            margin-top: 14px;
-            font-size: 18px;
+            margin-top: 5px;
+            font-size: 14px;
             color: #683F18;
             box-sizing: border-box;
             padding: 0 46px;
@@ -278,7 +281,7 @@
             .home_body_wenxian_body_list_view_date_text {
               font-size: 14px;
               color: #102030;
-              margin-top: 14px;
+              margin-top: 5px;
               display: inline-block;
               vertical-align: middle;
             }
@@ -317,6 +320,7 @@
       color: #FFFFFF;
       text-align: center;
       line-height: 51px;
+      cursor: pointer;
       font-size: 16px;
       margin: 60px auto 0;
     }

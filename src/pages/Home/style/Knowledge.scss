@@ -9,6 +9,7 @@
     border-right: 1px solid rgba(0, 0, 0, 0.16);
     padding: 20px 30px;
     box-sizing: border-box;
+
     border-bottom: 1px solid rgba(0, 0, 0, 0.16);
 
     &:nth-child(1),
@@ -29,14 +30,18 @@
         vertical-align: top;
 
         .home_body_knowledge_box_title {
+          white-space: nowrap;
+          overflow: hidden;
           font-size: 24px;
+          width: 220px;
+          text-overflow: ellipsis;
           display: inline-block;
           vertical-align: middle;
           color: #653F18;
           font-weight: bold;
           line-height: 137px;
 
-          &:before {
+          .home_body_knowledge_box_title_font {
             position: absolute;
             font-size: 80px;
             color: rgba(178, 128, 108, 0.3);

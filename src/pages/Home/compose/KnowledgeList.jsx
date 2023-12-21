@@ -2,6 +2,7 @@ import '../style/Knowledge.scss'
 import {useEffect, useState} from "react";
 import {listByViewsOrder} from "@/api/home.js";
 import activeButtonImage from '@/assets/img/home/know_button.png'
+import {diffMoreTypeTitle} from '../js/diffKnowViews.jsx'
 
 export function KnowledgeList() {
     const [knowDetailCardList, setKnowDetailCardList] = useState(Array(10).fill(undefined, undefined, undefined))
@@ -12,27 +13,28 @@ export function KnowledgeList() {
         {title: "地名", key: 4},
         {title: "物产", key: 5},
     ]
-
+    const [page, setPage] = useState(1)
     const [knowRadio, setKnowRadio] = useState(1)
     const [knowButtonGroup] = useState(knowButtonList)
     const [tagIndex, setTagIndex] = useState(1)
     let knowDetailQuery = {
-        page: 1,
+        page: page,
         rows: 8,
         type: tagIndex,
         index: knowRadio
     }
-    const [{data: OrderList, loading, error}, refetch] = listByViewsOrder(knowDetailQuery)
+    const [{data: OrderList, loading, error}, reReqListOrder] = listByViewsOrder(knowDetailQuery)
     useEffect(() => {
         setKnowDetailCardList(OrderList ? OrderList?.data?.rows : [])
     }, [OrderList]);
 
     useEffect(() => {
-        refetch()
-    }, [knowRadio, tagIndex]);
+        reReqListOrder()
+    }, [knowRadio, tagIndex, page]);
     const changeRadioFunc = (index) => {
         setKnowRadio(index)
     }
+
     return (
         <>
             <div className={"home_body_knowledge_title"}></div>
@@ -75,7 +77,7 @@ export function KnowledgeList() {
                         <div key={index} className={"home_body_knowledge_box_container"}>
                             <div className={"home_body_knowledge_box_header"}>
                                 <div className={"home_body_knowledge_box_header_left"}>
-                                    <div className={"home_body_knowledge_box_title"}>杜甫</div>
+                                    {diffMoreTypeTitle(res, tagIndex)}
                                     <div className={"home_body_knowledge_icon"}></div>
                                 </div>
                                 <div className={"home_body_knowledge_box_header_rit"}>
@@ -100,13 +102,17 @@ export function KnowledgeList() {
                 })}
             </div>
             <div className={"home_body_knowledge_next"}>
-                <div className={"home_body_knowledge_next_button"}>
+                <div className={"home_body_knowledge_next_button"} onClick={() => {
+                    setPage(page + 1)
+                }}>
                     换一批
                 </div>
                 <div className={"home_body_knowledge_next_button"}>
-                    换一批
+                    查看更多
                 </div>
             </div>
         </>
     )
+
+
 }

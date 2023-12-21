@@ -12,3 +12,11 @@ export function listByViewsOrder(data) {
         params: data
     })
 }
+
+export function selectBookTempOrderByViews(data) {
+    return useAxios({
+        url: "/bookApi/selectBookTempOrderByViews",
+        method: "get",
+        params: data
+    })
+}

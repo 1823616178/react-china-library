@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 import useAxios, {configure} from 'axios-hooks'
 
 const refreshAccessToken = async () => Math.random().toString(36);
-
 const service = axios.create({
     // axios中请求配置有baseURL选项，表示请求URL公共部分
     baseURL: import.meta.env.VITE_APP_API_BASE_URL, // 超时
@@ -21,14 +20,16 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response) => response,
     async (error) => {
-        console.log(error)
         const config = error.config;
-        if (error.response.status === 401 && !config._retry) {
+        if (error.code === "ERR_CANCELED") {
+            // aborted in useEffect cleanup
+            return Promise.resolve({status: 499})
+        }
+        if (error?.response?.status === 401 && !config._retry) {
             // we use this flag to avoid retrying indefinitely if
             // getting a refresh token fails for any reason
             config._retry = true;
             localStorage.setItem("token", await refreshAccessToken());
-
             return axios(config);
         }
 
