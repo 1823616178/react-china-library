@@ -48,8 +48,7 @@ export const TempToType = [
  * 转换数据格式
  * @returns {Promise<*[]>}
  */
-export const transitionList = async (data, arr) => {
-    arr = []
+export const transitionList = (data, arr) => {
     for (let i in data) {
         let obj = {
             title: data[i].personalName || "不详",

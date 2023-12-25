@@ -30,22 +30,22 @@ export function KnowledgeListBody() {
     }, advancedRefetch] = advancedRetrievalParams(advancedQuery)
 
 
-    const [{data: knowLedgePersonalList}] = getPersonalAPiList(listQuery())
+    const [{data: knowLedgePersonalList}, executePost] = getPersonalAPiList(listQuery())
     /*    const [{data: knowLedgeEventList}] = getEventApiList(listQuery())
         const [{data: knowProductList}] = getProductApiList(listQuery())
         const [{data: knowOrganizationList}] = getOrganizationApiList(listQuery())
         const [{data: knowLedgeGeographicalList}] = getGeographicalApiList(listQuery())*/
 
-/*
-    useEffect(() => {
+    const onChange = () => {
         let type = typeList[selectTag]?.type
-    }, [selectTag]);
-*/
+        executePost({
+            url: "/knowledgeApi/eventApi/list",
+            data: listQuery()
+        })
+    }
 
     useEffect(() => {
-        Init().then().catch(e => {
-            console.log(e)
-        })
+        Init().then()
     }, [knowLedgePersonalList])
 
     useEffect(() => {
