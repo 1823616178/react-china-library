@@ -5,18 +5,23 @@ import {useEffect, useState} from "react";
 import {calculateKnowList, knowledgeTypeList, packageAdvanceList} from "@/utils/common.js";
 import {TypeSelect} from "@/composent/TypeSelect/TypeSelect.jsx";
 import {LeftNavBox} from "@/composent/LeftNavbox/LeftNavBox.jsx";
-import {advancedRetrievalParams, getFirstTypeCountForHighSearch} from "@/api/knowledge.js";
-import {advancedQuery, firstQuery} from "@/pages/knowledge/js/common.js";
+import {
+    advancedRetrievalParams,
+    getEventApiList,
+    getFirstTypeCountForHighSearch, getGeographicalApiList, getOrganizationApiList,
+    getPersonalAPiList, getProductApiList
+} from "@/api/knowledge.js";
+import {advancedQuery, firstQuery, listQuery, transitionList} from "@/pages/knowledge/js/common.js";
+
 
 export function KnowledgeListBody() {
     const [selectTag, setSelectTag] = useState(0)
     const [typeList, setTypeList] = useState([])
     const [advanceList, setAdvanceList] = useState([])
-
+    const [knowledgeList, setKnowledgeList] = useState([])
     let allEnglishLetter = Array.from({length: 26}, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
     let [letterList] = useState(allEnglishLetter)
-
-
+    let [resultList, setResultList] = useState([])
     const [{data: knowLedgeTypeNumber, loading}, refetch] = getFirstTypeCountForHighSearch(firstQuery)
     const [{
         data: advanceParams,
@@ -24,15 +29,38 @@ export function KnowledgeListBody() {
         advancedError
     }, advancedRefetch] = advancedRetrievalParams(advancedQuery)
 
+
+    const [{data: knowLedgePersonalList}] = getPersonalAPiList(listQuery())
+    /*    const [{data: knowLedgeEventList}] = getEventApiList(listQuery())
+        const [{data: knowProductList}] = getProductApiList(listQuery())
+        const [{data: knowOrganizationList}] = getOrganizationApiList(listQuery())
+        const [{data: knowLedgeGeographicalList}] = getGeographicalApiList(listQuery())*/
+
+/*
+    useEffect(() => {
+        let type = typeList[selectTag]?.type
+    }, [selectTag]);
+*/
+
+    useEffect(() => {
+        Init().then().catch(e => {
+            console.log(e)
+        })
+    }, [knowLedgePersonalList])
+
     useEffect(() => {
         calculateKnowList(knowLedgeTypeNumber?.data || [], setTypeList)
     }, [knowLedgeTypeNumber])
 
     useEffect(() => {
         packageAdvanceList(advanceParams?.data || [], setAdvanceList)
-        console.log(advanceList)
     }, [advanceParams]);
 
+    const Init = async () => {
+        let list = []
+        await transitionList(knowLedgePersonalList?.data?.rows, list)
+        await setKnowledgeList(list)
+    }
     const moreHeaderSlotCompose = () => {
         return (
             <div className={"knowledge_list_container_rit_list_obj"}>
@@ -68,7 +96,7 @@ export function KnowledgeListBody() {
                     </div>
                 </div>
                 <div className={"knowledge_list_container_rit_list"}>
-                    <KnowledgeList moreHeaderSlot={moreHeaderSlotCompose()}></KnowledgeList>
+                    <KnowledgeList data={knowledgeList} moreHeaderSlot={moreHeaderSlotCompose()}></KnowledgeList>
                 </div>
             </div>
         </div>

@@ -22,8 +22,8 @@ export const packageAdvanceList = (data = [], setAdvanceList) => {
     if (data.length > 0) {
         let list = []
         for (let i in data) {
+            let arr = []
             if (data[i].children) {
-                let arr = []
                 for (let e in data[i].children) {
                     let obj = {
                         title: e.classificationName || '',
@@ -38,3 +38,4 @@ export const packageAdvanceList = (data = [], setAdvanceList) => {
         setAdvanceList(list)
     }
 }
+
