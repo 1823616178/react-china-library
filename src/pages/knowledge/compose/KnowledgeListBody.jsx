@@ -9,7 +9,7 @@ import {
     advancedRetrievalParams,
     getEventApiList,
     getFirstTypeCountForHighSearch, getGeographicalApiList, getOrganizationApiList,
-    getPersonalAPiList, getProductApiList
+    getPersonalAPiList, getPersonalAPiListParams, getProductApiList
 } from "@/api/knowledge.js";
 import {advancedQuery, firstQuery, listQuery, transitionList} from "@/pages/knowledge/js/common.js";
 
@@ -30,17 +30,34 @@ export function KnowledgeListBody() {
     }, advancedRefetch] = advancedRetrievalParams(advancedQuery)
 
 
-    const [{data: knowLedgePersonalList}] = getPersonalAPiList(listQuery())
+    const [{data: knowLedgePersonalList}, loadMoreFetch] = getPersonalAPiList(listQuery())
     /*    const [{data: knowLedgeEventList}] = getEventApiList(listQuery())
         const [{data: knowProductList}] = getProductApiList(listQuery())
         const [{data: knowOrganizationList}] = getOrganizationApiList(listQuery())
         const [{data: knowLedgeGeographicalList}] = getGeographicalApiList(listQuery())*/
 
-/*
     useEffect(() => {
         let type = typeList[selectTag]?.type
+        switch (type) {
+            case "zsk_personal_temp":
+                loadMoreFetch(getPersonalAPiListParams(listQuery()))
+                break;
+            case "zsk_org_temp":
+                loadMoreFetch(getOrganizationApiList(listQuery()))
+                break;
+            case "zsk_event_temp":
+                loadMoreFetch(getEventApiList(listQuery()))
+                break;
+            case "zsk_geographical_temp":
+                loadMoreFetch(getGeographicalApiList(listQuery()))
+                break;
+            case "zsk_product_temp":
+                loadMoreFetch(getProductApiList(listQuery()))
+                break;
+            default:
+                break;
+        }
     }, [selectTag]);
-*/
 
     useEffect(() => {
         Init().then().catch(e => {

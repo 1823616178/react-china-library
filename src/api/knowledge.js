@@ -34,53 +34,66 @@ export function getPersonalAPiList(data) {
 }
 
 /**
+ * 获取知识人物列表请求对象
+ * @param data
+ * @returns {{method: string, params, url: string}}
+ */
+export function getPersonalAPiListParams(data) {
+    return {
+        url: "/knowledgeApi/personalApi/list",
+        method: "post",
+        params: data
+    }
+}
+
+/**
  * 获取知识机构列表
  * @param data
- * @returns {UseAxiosResult<any, any, any>}
+ * @returns {{method: string, params, url: string}}
  */
 export function getOrganizationApiList(data) {
-    return useAxios({
+    return {
         url: "/knowledgeApi/organizationApi/list",
         method: "post",
         params: data
-    })
+    }
 }
 
 /**
  * 获取知识事件列表
  * @param data
- * @returns {UseAxiosResult<any, any, any>}
+ * @returns {{method: string, params, url: string}}
  */
 export function getEventApiList(data) {
-    return useAxios({
+    return {
         url: "/knowledgeApi/eventApi/list",
         method: "post",
         params: data
-    })
+    }
 }
 
 /**
  * 获取知识地理列表
  * @param data
- * @returns {UseAxiosResult<any, any, any>}
+ * @returns {{method: string, params, url: string}}
  */
 export function getGeographicalApiList(data) {
-    return useAxios({
+    return {
         url: "/knowledgeApi/geographicalApi/list",
         method: "post",
         params: data
-    })
+    }
 }
 
 /**
  * 获取知识物产列表
  * @param data
- * @returns {UseAxiosResult<any, any, any>}
+ * @returns {{method: string, params, url: string}}
  */
 export function getProductApiList(data) {
-    return useAxios({
+    return {
         url: "/knowledgeApi/productApi/list",
         method: 'post',
         params: data
-    })
+    }
 }

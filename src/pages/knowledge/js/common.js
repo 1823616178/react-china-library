@@ -49,7 +49,6 @@ export const TempToType = [
  * @returns {Promise<*[]>}
  */
 export const transitionList = async (data, arr) => {
-    arr = []
     for (let i in data) {
         let obj = {
             title: data[i].personalName || "不详",
