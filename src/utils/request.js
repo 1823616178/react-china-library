@@ -20,6 +20,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response) => response,
     async (error) => {
+        console.log(error)
         const config = error.config;
         if (error.code === "ERR_CANCELED") {
             // aborted in useEffect cleanup

@@ -2,6 +2,34 @@ import React from "react";
 import './style/index.scss'
 
 export function KnowledgeList({moreHeaderSlot, moreInfoSlot, data}) {
+    const filterName = (type) => {
+        if (type === "人物") {
+            return (
+                <span>人物传略</span>
+            )
+        }
+        if (type === "机构") {
+            return (
+                <span>机构描述</span>
+            )
+        }
+        if (type === "事件") {
+            return (
+                <span>事件描述</span>
+            )
+        }
+        if (type === "地名") {
+            return (
+                <span>参考方位</span>
+            )
+        }
+        if (type === "物产") {
+            return (
+                <span>物产描述</span>
+            )
+        }
+    }
+
     return (
         <>
             {data.map((res, index) => {
@@ -19,7 +47,7 @@ export function KnowledgeList({moreHeaderSlot, moreInfoSlot, data}) {
                     </div>
                     <div className={"literature_article_container_body_rit_li_detail"}>
                         <div className={"literature_article_container_body_rit_li_detail_content"}>
-                            <span>人物传略</span>
+                            {filterName(res.type)}
                             {res.biography}
                         </div>
                     </div>

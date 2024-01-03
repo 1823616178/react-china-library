@@ -26,14 +26,20 @@ export const packageAdvanceList = (data = [], setAdvanceList) => {
             if (data[i].children) {
                 for (let e in data[i].children) {
                     let obj = {
-                        title: e.classificationName || '',
-                        type: e.categoryType || "",
-                        value: e.contentNum || 0
+                        title: data[i].children[e].classificationName || '',
+                        type: data[i].children[e].categoryType || "",
+                        value: data[i].children[e].contentNum || 0,
+                        columnName:data[i].children[e].columnName||""
                     }
                     arr.push(obj)
                 }
             }
-            list.push(arr)
+            let obj = {
+                children: arr,
+                title: data[i].classificationName || "暂无标题",
+                type: data[i].categoryType,
+            }
+            list.push(obj)
         }
         setAdvanceList(list)
     }
