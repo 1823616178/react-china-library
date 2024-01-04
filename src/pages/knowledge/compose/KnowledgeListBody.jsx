@@ -245,6 +245,10 @@ export function KnowledgeListBody() {
             )
         }
     }
+
+    const deleteTagFunction = (func) => {
+        func(undefined)
+    }
     return (
         <div className={"knowledge_list_container"}>
             <div className={"knowledge_list_container_let"}>
@@ -270,6 +274,13 @@ export function KnowledgeListBody() {
                     geoSelectTag={geoSelectTag}
                     productTag={productTag}
                     advanceList={advanceList}
+                    setBuildSelectTag={setBuildSelectTag}
+                    setTimerSelectTag={setTimerSelectTag}
+                    setEventSelectTag={setEventSelectTag}
+                    setOrgSelectTag={setOrgSelectTag}
+                    setGeoSelectTag={setGeoSelectTag}
+                    setProductSelectTag={setProductSelectTag}
+                    deleteTagFunction={deleteTagFunction}
                 ></ListHeader>
                 <div className={"knowledge_list_container_rit_sort"}>
                     <div className={"knowledge_list_container_rit_sort_title"}>排序筛选：</div>
