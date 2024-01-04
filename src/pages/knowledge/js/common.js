@@ -25,15 +25,18 @@ export let firstQuery = {
     ]
 }
 
-export let advancedQuery = {
-    advancedRetrievalParams: "",
-    categoryType: "",
-    sourceType: 300
+
+export let advancedQuery = (index) => {
+    return {
+        advancedRetrievalParams: "",
+        categoryType: "",
+        sourceType: TempToType[index].num
+    }
 }
 
 export const listQuery = (adaParamsQuery = []) => {
     return {
-        sort: "orderNum, rid",
+        sort: "orderNum,rid",
         order: "desc",
         page: 1,
         rows: 10,
@@ -45,11 +48,11 @@ export const listQuery = (adaParamsQuery = []) => {
 }
 
 export const TempToType = [
-    {tableName: "zsk_personal_temp", type: "personal", title: "人物"},
-    {tableName: "zsk_org_temp", type: "organization", title: "机构"},
-    {tableName: "zsk_event_temp", type: "event", title: "事件"},
-    {tableName: "zsk_geographical_temp", type: "geographical", title: "地名"},
-    {tableName: "zsk_product_temp", type: "product", title: "物产"},
+    {tableName: "zsk_personal_temp", type: "personal", title: "人物", num: 300},
+    {tableName: "zsk_org_temp", type: "organization", title: "机构", num: 310},
+    {tableName: "zsk_event_temp", type: "event", title: "事件", num: 320},
+    {tableName: "zsk_geographical_temp", type: "geographical", title: "地名", num: 330},
+    {tableName: "zsk_product_temp", type: "product", title: "物产", num: 340},
 ]
 
 /**

@@ -21,20 +21,6 @@ export function advancedRetrievalParams(data) {
 }
 
 /**
- * 获取A-Z可见字母
- * @param data
- * @returns {UseAxiosResult<any, any, any>}
- */
-export function getInitialsInfo(data) {
-    return useAxios({
-        url: '',
-        method: "post",
-        params: data
-    })
-}
-
-
-/**
  * 获取知识人物列表
  * @param data
  * @returns {UseAxiosResult<any, any, any>}
@@ -110,5 +96,19 @@ export function getProductApiList(data) {
         method: 'post',
         params: data
     }
+}
+
+
+/**
+ * 获取A-Z可见字母
+ * @param data
+ * @returns {UseAxiosResult<any, any, any>}
+ */
+export function getInitialsInfo(data) {
+    return useAxios({
+        url: '/knowledgeApi/personalApi/getInitialsInfo',
+        method: "post",
+        params: data
+    })
 }
 

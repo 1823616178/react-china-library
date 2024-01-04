@@ -29,7 +29,7 @@ export const packageAdvanceList = (data = [], setAdvanceList) => {
                         title: data[i].children[e].classificationName || '',
                         type: data[i].children[e].categoryType || "",
                         value: data[i].children[e].contentNum || 0,
-                        columnName:data[i].children[e].columnName||""
+                        columnName: data[i].children[e].columnName || ""
                     }
                     arr.push(obj)
                 }

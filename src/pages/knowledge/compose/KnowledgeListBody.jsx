@@ -16,17 +16,25 @@ import {
 } from "@/api/knowledge.js";
 import {advancedQuery, firstQuery, listQuery, transitionList} from "@/pages/knowledge/js/common.js";
 import {cleanup} from "@testing-library/react";
+import {clearCache, resetConfigure} from "axios-hooks";
 
 
 export function KnowledgeListBody() {
     const [selectTag, setSelectTag] = useState(0)
-    const [buildSelectTag, setBuildSelectTag] = useState(0)
-    const [timerSelectTag, setTimerSelectTag] = useState(0)
+    const [buildSelectTag, setBuildSelectTag] = useState(undefined) //建设单位
+    const [timerSelectTag, setTimerSelectTag] = useState(undefined) // 时代选项
+    const [eventSelectTag, setEventSelectTag] = useState(undefined) // 事件类型
+    const [orgSelectTag, setOrgSelectTag] = useState(undefined) // 机构类型
+    const [geoSelectTag, setGeoSelectTag] = useState(undefined) // 地名类型
+    const [productTag, setProductSelectTag] = useState(undefined) // 物产类型
+
     const [typeList, setTypeList] = useState([])
     const [advanceList, setAdvanceList] = useState([])
     const [knowledgeList, setKnowledgeList] = useState([])
     let allEnglishLetter = Array.from({length: 26}, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
     let [letterList] = useState(allEnglishLetter)
+    let [letterActiveList, setLetterActiveList] = useState([])
+
     let [resultList, setResultList] = useState([])
 
     const [{data: knowLedgeTypeNumber, loading}, refetch] = getFirstTypeCountForHighSearch(firstQuery)
@@ -34,12 +42,10 @@ export function KnowledgeListBody() {
         data: advanceParams,
         advancedLoading,
         advancedError
-    }, advancedRefetch] = advancedRetrievalParams(advancedQuery)
+    }, advancedRefetch] = advancedRetrievalParams(advancedQuery(selectTag))
     const [adaParamsQuery, setAdaParamsQuery] = useState([])
-
     const [{data: initialsInfoList}, reGetInfoList] = getInitialsInfo({advancedRetrievalParams: listQuery(adaParamsQuery).advancedRetrievalParams})
     const [{data: knowLedgePersonalList}, loadMoreFetch] = getPersonalAPiList(listQuery(adaParamsQuery))
-
 
 
     /**
@@ -49,38 +55,23 @@ export function KnowledgeListBody() {
      * @returns {Promise<void>}
      */
     const onChangeSelectTag = async (data, query) => {
-        console.log(query)
         await setSelectTag(data)
         let type = typeList[data]?.type
         await getDataByType(type, query ? query : [])
+        // await advancedRefetch()
     }
     /**
      * 当改变BuildIndex时
      */
-    const onChangeBuildTag = async (data) => {
-        await setBuildSelectTag(data)
-        await getAdvanceList(0)
-        await onChangeSelectTag(selectTag, adaParamsQuery)
-    }
-    /**
-     * 当改变
-     * @param data
-     */
-    const onChangeTimerTag = async (data) => {
-        await setTimerSelectTag(data)
-        await getAdvanceList(1)
+    const onChangeBuildTag = async (data, type, setValue) => {
+        await setValue(data)
+        await getAdvanceList(type, data)
         await onChangeSelectTag(selectTag, adaParamsQuery)
     }
 
-    const getAdvanceList = (type) => {
+    const getAdvanceList = (type, index) => {
         if (advanceList.length > 0) {
-            let params
-            if (type === 0) {
-                params = advanceList[type]?.children[buildSelectTag]
-            }
-            if (type === 1) {
-                params = advanceList[type]?.children[timerSelectTag]
-            }
+            let params = advanceList[type]?.children[index]
             if (params) {
                 let index = adaParamsQuery.findIndex(res => res.field === params.columnName)
                 if (index > -1) {
@@ -106,22 +97,23 @@ export function KnowledgeListBody() {
             }
         }
     }
-    const getDataByType = (type, params) => {
+
+    const getDataByType = async (type, params) => {
         switch (type) {
             case "zsk_personal_temp":
-                loadMoreFetch(getPersonalAPiListParams(listQuery(params)))
+                await loadMoreFetch(getPersonalAPiListParams(listQuery(params)))
                 break;
             case "zsk_org_temp":
-                loadMoreFetch(getOrganizationApiList(listQuery(params)))
+                await loadMoreFetch(getOrganizationApiList(listQuery(params)))
                 break;
             case "zsk_event_temp":
-                loadMoreFetch(getEventApiList(listQuery(params)))
+                await loadMoreFetch(getEventApiList(listQuery(params)))
                 break;
             case "zsk_geographical_temp":
-                loadMoreFetch(getGeographicalApiList(listQuery(params)))
+                await loadMoreFetch(getGeographicalApiList(listQuery(params)))
                 break;
             case "zsk_product_temp":
-                loadMoreFetch(getProductApiList(listQuery(params)))
+                await loadMoreFetch(getProductApiList(listQuery(params)))
                 break;
             default:
                 break;
@@ -142,12 +134,15 @@ export function KnowledgeListBody() {
         packageAdvanceList(advanceParams?.data || [], setAdvanceList)
     }, [advanceParams]);
 
+    useEffect(() => {
+        setLetterActiveList(initialsInfoList?.data || [])
+    }, [initialsInfoList])
+
     const Init = async () => {
         let list = []
         await transitionList(knowLedgePersonalList?.data?.rows, list)
         await setKnowledgeList(list)
     }
-
 
     const moreHeaderSlotCompose = () => {
         return (
@@ -159,12 +154,14 @@ export function KnowledgeListBody() {
     }
 
     const filterNavBox = (result, index) => {
-        if (result.type === "zsk_personal_construction_units") {
+        if (result.type === "zsk_personal_construction_units" || result.type === "zsk_org_construction_units" || result.type === "zsk_product_construction_units" || result.type === "zsk_event_construction_units" || result.type === "zsk_geographical_construction_units") {
             return (
                 <div key={index} style={{marginTop: "20px"}}>
                     <LeftNavBox
                         selectTag={buildSelectTag}
+                        type={index}
                         title={result.title}
+                        setValue={setBuildSelectTag}
                         assetsList={result.children}
                         setTag={onChangeBuildTag}></LeftNavBox>
                 </div>
@@ -174,13 +171,68 @@ export function KnowledgeListBody() {
             return (
                 <div key={index} style={{marginTop: "20px"}}>
                     <LeftNavBox
+                        type={index}
                         selectTag={timerSelectTag}
+                        setValue={setTimerSelectTag}
                         title={result.title}
                         assetsList={result.children}
-                        setTag={onChangeTimerTag}></LeftNavBox>
+                        setTag={onChangeBuildTag}></LeftNavBox>
                 </div>
             )
         }
+        if (result.type === "zsk_event_type") {
+            return (
+                <div key={index} style={{marginTop: "20px"}}>
+                    <LeftNavBox
+                        type={index}
+                        selectTag={eventSelectTag}
+                        setValue={setEventSelectTag}
+                        title={result.title}
+                        assetsList={result.children}
+                        setTag={onChangeBuildTag}></LeftNavBox>
+                </div>
+            )
+        }
+        if (result.type === "zsk_org_type") {
+            return (
+                <div key={index} style={{marginTop: "20px"}}>
+                    <LeftNavBox
+                        type={index}
+                        selectTag={orgSelectTag}
+                        setValue={setOrgSelectTag}
+                        title={result.title}
+                        assetsList={result.children}
+                        setTag={onChangeBuildTag}></LeftNavBox>
+                </div>
+            )
+        }
+        if (result.type === "zsk_product_type") {
+            return (
+                <div key={index} style={{marginTop: "20px"}}>
+                    <LeftNavBox
+                        type={index}
+                        selectTag={productTag}
+                        setValue={setProductSelectTag}
+                        title={result.title}
+                        assetsList={result.children}
+                        setTag={onChangeBuildTag}></LeftNavBox>
+                </div>
+            )
+        }
+        if (result.type === "zsk_geographical_level") {
+            return (
+                <div key={index} style={{marginTop: "20px"}}>
+                    <LeftNavBox
+                        type={index}
+                        selectTag={geoSelectTag}
+                        setValue={setGeoSelectTag}
+                        title={result.title}
+                        assetsList={result.children}
+                        setTag={onChangeBuildTag}></LeftNavBox>
+                </div>
+            )
+        }
+
 
     }
     return (
@@ -207,7 +259,9 @@ export function KnowledgeListBody() {
                     <div className={"knowledge_list_container_rit_sort_font_group"}>
                         {letterList.map((res, index) => {
                             return <div className={"knowledge_list_container_rit_sort_font"}
-                                        key={index}>{res}</div>
+                                        key={index}
+                                        style={letterActiveList.find(e => e.keyword === res) ?
+                                            {color: "#000"} : {color: "#999"}}>{res}</div>
                         })}
                     </div>
                 </div>
