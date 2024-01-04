@@ -1,6 +1,6 @@
 import '../style/literature.scss'
 import tabModelList from '@/assets/img/literature/tab_change_mode_list.png'
-import {ListHeader} from "@/composent/ListHeader/ListHeader.jsx";
+import {ListHeader} from './ListHeader/ListHeader.jsx';
 import {ImageContentIndex} from "@/composent/ImageContentList/Index.jsx";
 
 export function LiteratureList() {

@@ -22,7 +22,7 @@
     }
 
     .Literature_container_rit_header_let_tab {
-      width: 125px;
+      //width: 125px;
       height: 40px;
       border: 1px solid #B2806C;
       background-color: rgba(178, 128, 108, 0.20);
@@ -37,6 +37,7 @@
 
       .Literature_container_rit_header_let_tab_title {
         display: inline-block;
+        margin-right: 10px;
         font-size: 18px;
         color: #653C02;
         vertical-align: middle;

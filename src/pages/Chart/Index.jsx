@@ -1,7 +1,7 @@
 import './style/index.scss'
 import {ArrowSelect} from "@/composent/ArrowSelect/ArrowSelect.jsx";
 import {HomeBanner} from "@/composent/header/Banner.jsx";
-import {ListHeader} from "@/composent/ListHeader/ListHeader.jsx";
+import {ListHeader} from "./compose/ListHeader/ListHeader.jsx";
 import {ImageContentIndex} from "@/composent/ImageContentList/Index.jsx";
 
 export const ChartIndex = () => {

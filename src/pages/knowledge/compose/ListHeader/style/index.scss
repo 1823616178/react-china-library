@@ -1,0 +1,102 @@
+.Literature_container_rit_header {
+  width: 1058px;
+  height: 60px;
+  background-image: url("@/assets/img/layout/nav_background.png");
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  border: 1px solid #B2806C;
+  box-sizing: border-box;
+  padding: 0 24px;
+  justify-content: space-between;
+  align-items: center;
+
+  .Literature_container_rit_header_let {
+    display: inline-block;
+    vertical-align: middle;
+
+    .Literature_container_rit_header_let_title {
+      font-size: 18px;
+      color: #653C02;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .Literature_container_rit_header_let_tab {
+      //width: 125px;
+      height: 40px;
+      border: 1px solid #B2806C;
+      background-color: rgba(178, 128, 108, 0.20);
+      text-align: left;
+      box-sizing: border-box;
+      line-height: 35px;
+      padding: 0 14px;
+      display: inline-block;
+      vertical-align: middle;
+      user-select: none;
+      margin-left: 12px;
+
+      .Literature_container_rit_header_let_tab_title {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 18px;
+        color: #653C02;
+        vertical-align: middle;
+      }
+
+      .Literature_container_rit_header_let_tab_icon {
+        display: inline-block;
+        float: right;
+        vertical-align: middle;
+        background-image: url("@/assets/img/literature/back_tab_close.png");
+        width: 15px;
+        height: 40px;
+        cursor: pointer;
+        background-position: center center;
+        background-size: 15px 15px;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  .Literature_container_rit_header_right {
+    display: inline-block;
+    vertical-align: middle;
+
+
+    .Literature_container_rit_header_right_line {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 33px;
+      width: 1px;
+      margin-right: 13px;
+      height: 24px;
+      background-color: #653C02;
+    }
+
+    .Literature_container_rit_header_right_span {
+      font-size: 16px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .Literature_container_rit_header_right_change_mode {
+      display: inline-block;
+      vertical-align: middle;
+
+      .Literature_container_rit_header_right_change_mode_icon {
+        height: 18px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 18px;
+        background-image: url("@/assets/img/literature/tab_change_mode_obj.png");
+        background-position: center center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        margin-left: 24px;
+      }
+    }
+
+  }
+
+}

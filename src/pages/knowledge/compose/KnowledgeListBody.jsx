@@ -1,5 +1,5 @@
 import '../style/KnowledgeListBody.scss'
-import {ListHeader} from "@/composent/ListHeader/ListHeader.jsx";
+import {ListHeader} from "./ListHeader/ListHeader.jsx";
 import {KnowledgeList} from "@/composent/KnowledgeList/KnowledgeList.jsx";
 import {useEffect, useState} from "react";
 import {calculateKnowList, packageAdvanceList} from "@/utils/common.js";
@@ -58,7 +58,7 @@ export function KnowledgeListBody() {
         await setSelectTag(data)
         let type = typeList[data]?.type
         await getDataByType(type, query ? query : [])
-        // await advancedRefetch()
+        // await clearValue()
     }
     /**
      * 当改变BuildIndex时
@@ -67,6 +67,18 @@ export function KnowledgeListBody() {
         await setValue(data)
         await getAdvanceList(type, data)
         await onChangeSelectTag(selectTag, adaParamsQuery)
+    }
+
+    /**
+     * 清除类型
+     */
+    const clearValue = async () => {
+        setBuildSelectTag(undefined)
+        setTimerSelectTag(undefined)
+        setEventSelectTag(undefined)
+        setOrgSelectTag(undefined)
+        setGeoSelectTag(undefined)
+        setProductSelectTag(undefined)
     }
 
     const getAdvanceList = (type, index) => {
@@ -232,8 +244,6 @@ export function KnowledgeListBody() {
                 </div>
             )
         }
-
-
     }
     return (
         <div className={"knowledge_list_container"}>
@@ -252,7 +262,15 @@ export function KnowledgeListBody() {
 
             </div>
             <div className={"knowledge_list_container_rit"}>
-                <ListHeader></ListHeader>
+                <ListHeader
+                    buildSelectTag={buildSelectTag}
+                    timerSelectTag={timerSelectTag}
+                    eventSelectTag={eventSelectTag}
+                    orgSelectTag={orgSelectTag}
+                    geoSelectTag={geoSelectTag}
+                    productTag={productTag}
+                    advanceList={advanceList}
+                ></ListHeader>
                 <div className={"knowledge_list_container_rit_sort"}>
                     <div className={"knowledge_list_container_rit_sort_title"}>排序筛选：</div>
                     <div className={"knowledge_list_container_rit_sort_all"}>全部</div>
