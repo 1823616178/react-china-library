@@ -1,37 +1,38 @@
 import {useEffect, useState} from "react";
 import defaultHeaderTitle from '@/assets/img/home/home_banner_title.png'
 
-export function HomeBanner({changeCheckbox, headerTitle = defaultHeaderTitle}) {
-    const gatherCheckBoxList = [
-        {
-            value: "全部",
-            key: ""
-        },
-        {
-            value: "文献",
-            key: ""
-        },
-        {
-            value: "篇章",
-            key: ""
-        },
-        {
-            value: "图表",
-            key: ""
-        },
-        {
-            value: "全文",
-            key: ""
-        },
-        {
-            value: "知识",
-            key: ""
-        }
-    ]
-    const [checkboxLTypes] = useState(gatherCheckBoxList)
-    useEffect(() => {
+export function HomeBanner({
+                               changeCheckbox,
+                               headerTitle = defaultHeaderTitle,
+                               checkboxArr = [],
+                               setCheckboxArr,
+                               checkboxActiveArr,
+                               setCheckboxActiveArr
+                           }) {
 
-    }, []);
+    const [allChecked, setAllChecked] = useState(true)
+    const onChangeAllChecked = (val) => {
+        setAllChecked(val.target.checked)
+    }
+
+    const handleChange = (index) => {
+        const newCheckboxArr = checkboxArr.map((res, i) => {
+            if (i === index) {
+                return {...res, isActive: !res.isActive};
+            }
+            return res;
+        });
+        setCheckboxArr(newCheckboxArr);
+    };
+
+    const handleChangeCopy = (index) => {
+        {
+            let arr = checkboxArr
+            console.log(arr[index].isActive)
+            arr[index].isActive = !arr[index].isActive
+            setCheckboxArr(arr)
+        }
+    }
 
     return (
         <div className={"banner_container"}>
@@ -50,13 +51,20 @@ export function HomeBanner({changeCheckbox, headerTitle = defaultHeaderTitle}) {
                     changeCheckbox(true)
                 }}>高级检索
                 </div>
-
             </div>
             <div className={"banner_container_select"}>
-                {checkboxLTypes.map((res, index) => (
+                <label>
+                    <input type={"checkbox"} checked={allChecked} onChange={onChangeAllChecked} title="全选"
+                           className={"banner_container_checkbox"}/>
+                    <span>全选</span>
+                </label>
+                {checkboxArr.map((res, index) => (
                     <label key={index}>
-                        <input type={"checkbox"} title={res.value} className={"banner_container_checkbox"}/>
-                        <span>{res.value}</span>
+                        <input type={"checkbox"}
+                               onClick={() => handleChange(index)}
+                               checked={res.isActive}
+                               title={res.title} className={"banner_container_checkbox"}/>
+                        <span>{res.title}</span>
                     </label>
                 ))}
             </div>

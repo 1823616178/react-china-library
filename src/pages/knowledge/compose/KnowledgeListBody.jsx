@@ -37,7 +37,7 @@ export function KnowledgeListBody() {
     let allEnglishLetter = Array.from({length: 26}, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i));
     let [letterList] = useState(allEnglishLetter)
     let [letterActiveList, setLetterActiveList] = useState([])
-
+    let [checkboxActiveArr, setCheckboxActiveArr] = useState([])
     let [resultList, setResultList] = useState([])
 
     const [{data: knowLedgeTypeNumber, loading}, refetch] = getFirstTypeCountForHighSearch(firstQuery)
@@ -270,9 +270,12 @@ export function KnowledgeListBody() {
 
     return (
         <>
-            <BodyHead></BodyHead>
+            <BodyHead selectTag={selectTag}
+                      typeList={typeList}
+                      checkboxActiveArr={checkboxActiveArr}
+                      setCheckboxActiveArr={setCheckboxActiveArr}
+            ></BodyHead>
             <div className={"knowledge_list_container"}>
-
                 <div className={"knowledge_list_container_let"}>
                     <LeftNavBox selectTag={selectTag}
                                 type={99}
