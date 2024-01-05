@@ -32,37 +32,37 @@ export const ListHeader = ({
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[0]?.children[buildSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setBuildSelectTag, 0)}></div>
+                         onClick={() => deleteTag(setBuildSelectTag,   advanceList[0]?.children[buildSelectTag].columnName)}></div>
                 </div> : null}
                 {typeof timerSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[timerSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setTimerSelectTag, 1)}></div>
+                         onClick={() => deleteTag(setTimerSelectTag,  advanceList[1]?.children[timerSelectTag].columnName)}></div>
                 </div> : null}
                 {typeof eventSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[eventSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setEventSelectTag, 1)}></div>
+                         onClick={() => deleteTag(setEventSelectTag, advanceList[1]?.children[eventSelectTag].columnName)}></div>
                 </div> : null}
                 {typeof orgSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[orgSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setOrgSelectTag, 1)}></div>
+                         onClick={() => deleteTag(setOrgSelectTag, advanceList[1]?.children[orgSelectTag].columnName)}></div>
                 </div> : null}
                 {typeof geoSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[geoSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setGeoSelectTag, 1)}></div>
+                         onClick={() => deleteTag(setGeoSelectTag, advanceList[1]?.children[geoSelectTag].columnName)}></div>
                 </div> : null}
                 {typeof productTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[productTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setProductSelectTag, 1)}></div>
+                         onClick={() => deleteTag(setProductSelectTag, advanceList[1]?.children[productTag].columnName)}></div>
                 </div> : null}
             </div>
             <div className={"Literature_container_rit_header_right"}>

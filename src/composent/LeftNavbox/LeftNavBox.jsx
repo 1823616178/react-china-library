@@ -17,7 +17,7 @@ export function LeftNavBox({selectTag, setTag, title = "暂无标题", assetsLis
                 {assetsList.map((res, index) => {
                     return <div
                         onClick={() => {
-                            setTag(index, type, setValue)
+                            setTag(index, type === 99 ? [] : type, setValue)
                         }}
                         key={index} className={"Literature_container_left_head_body_tab"}
                         style={selectTag === index ? ziyuanStyle : {}}>

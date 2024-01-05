@@ -27,7 +27,6 @@ export function KnowledgeListBody() {
     const [orgSelectTag, setOrgSelectTag] = useState(undefined) // 机构类型
     const [geoSelectTag, setGeoSelectTag] = useState(undefined) // 地名类型
     const [productTag, setProductSelectTag] = useState(undefined) // 物产类型
-
     const [typeList, setTypeList] = useState([])
     const [advanceList, setAdvanceList] = useState([])
     const [knowledgeList, setKnowledgeList] = useState([])
@@ -47,7 +46,6 @@ export function KnowledgeListBody() {
     const [{data: initialsInfoList}, reGetInfoList] = getInitialsInfo({advancedRetrievalParams: listQuery(adaParamsQuery).advancedRetrievalParams})
     const [{data: knowLedgePersonalList}, loadMoreFetch] = getPersonalAPiList(listQuery(adaParamsQuery))
 
-
     /**
      * 当改变主选项时
      * @param data
@@ -58,21 +56,31 @@ export function KnowledgeListBody() {
         await setSelectTag(data)
         let type = typeList[data]?.type
         await getDataByType(type, query ? query : [])
+        if (query.length === 0) {
+            await clearValue()
+        }
+        // setAdaParamsQuery([])
         // await clearValue()
     }
     /**
      * 删除标签方法
      * @param func
+     * @param type
      */
-    const deleteTagFunction = async (func,type) => {
-        await func(undefined)
+    const deleteTagFunction = async (func, type) => {
+        func(undefined)
+        if (type) {
+            let deleteParam = adaParamsQuery.findIndex(res => res.field === type)
+            if (deleteParam > -1) adaParamsQuery.splice(deleteParam, 1)
+            await onChangeSelectTag(selectTag, adaParamsQuery)
+        }
+
     }
+
     /**
      * 当改变BuildIndex时
      */
     const onChangeBuildTag = async (data, type, setValue) => {
-        console.log(data)
-
         await setValue(data)
         await getAdvanceList(type, data)
         await onChangeSelectTag(selectTag, adaParamsQuery)
@@ -88,6 +96,7 @@ export function KnowledgeListBody() {
         setOrgSelectTag(undefined)
         setGeoSelectTag(undefined)
         setProductSelectTag(undefined)
+        setAdaParamsQuery([])
     }
 
     const getAdvanceList = (type, index) => {
@@ -255,11 +264,11 @@ export function KnowledgeListBody() {
         }
     }
 
-
     return (
         <div className={"knowledge_list_container"}>
             <div className={"knowledge_list_container_let"}>
                 <LeftNavBox selectTag={selectTag}
+                            type={99}
                             title={"知识类型"}
                             assetsList={typeList}
                             setTag={onChangeSelectTag}></LeftNavBox>
