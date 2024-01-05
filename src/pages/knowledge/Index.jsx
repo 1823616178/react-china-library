@@ -5,16 +5,9 @@ import React, {useState} from "react";
 import {KnowledgeListBody} from "@/pages/knowledge/compose/KnowledgeListBody.jsx";
 
 export const KnowledgeIndex = () => {
-    const [checkBoxShow, changeCheckbox] = useState(false)
 
     return (
         <div className={"knowledge_container"}>
-            <HomeBanner
-                headerTitle={headerTitle}
-                changeCheckbox={changeCheckbox}/>
-            {
-                checkBoxShow ? <SearchBox changeCheckbox={changeCheckbox}/> : <></>
-            }
             <KnowledgeListBody></KnowledgeListBody>
         </div>
 

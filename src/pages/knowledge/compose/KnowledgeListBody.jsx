@@ -1,7 +1,7 @@
 import '../style/KnowledgeListBody.scss'
 import {ListHeader} from "./ListHeader/ListHeader.jsx";
 import {KnowledgeList} from "@/composent/KnowledgeList/KnowledgeList.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {calculateKnowList, packageAdvanceList} from "@/utils/common.js";
 import {LeftNavBox} from "@/composent/LeftNavbox/LeftNavBox.jsx";
 import {
@@ -17,6 +17,10 @@ import {
 import {advancedQuery, firstQuery, listQuery, transitionList} from "@/pages/knowledge/js/common.js";
 import {cleanup} from "@testing-library/react";
 import {clearCache, resetConfigure} from "axios-hooks";
+import {HomeBanner} from "@/composent/header/Banner.jsx";
+import headerTitle from "@/assets/img/home/home_banner_title.png";
+import {SearchBox} from "@/composent/header/SearchBox.jsx";
+import {BodyHead} from "@/pages/knowledge/compose/bodyHead/BodyHead.jsx";
 
 
 export function KnowledgeListBody() {
@@ -265,55 +269,59 @@ export function KnowledgeListBody() {
     }
 
     return (
-        <div className={"knowledge_list_container"}>
-            <div className={"knowledge_list_container_let"}>
-                <LeftNavBox selectTag={selectTag}
-                            type={99}
-                            title={"知识类型"}
-                            assetsList={typeList}
-                            setTag={onChangeSelectTag}></LeftNavBox>
-                {
-                    advanceList.map((result, index) => {
-                        return (
-                            filterNavBox(result, index)
-                        )
-                    })
-                }
+        <>
+            <BodyHead></BodyHead>
+            <div className={"knowledge_list_container"}>
 
-            </div>
-            <div className={"knowledge_list_container_rit"}>
-                <ListHeader
-                    buildSelectTag={buildSelectTag}
-                    timerSelectTag={timerSelectTag}
-                    eventSelectTag={eventSelectTag}
-                    orgSelectTag={orgSelectTag}
-                    geoSelectTag={geoSelectTag}
-                    productTag={productTag}
-                    advanceList={advanceList}
-                    setBuildSelectTag={setBuildSelectTag}
-                    setTimerSelectTag={setTimerSelectTag}
-                    setEventSelectTag={setEventSelectTag}
-                    setOrgSelectTag={setOrgSelectTag}
-                    setGeoSelectTag={setGeoSelectTag}
-                    setProductSelectTag={setProductSelectTag}
-                    deleteTagFunction={deleteTagFunction}
-                ></ListHeader>
-                <div className={"knowledge_list_container_rit_sort"}>
-                    <div className={"knowledge_list_container_rit_sort_title"}>排序筛选：</div>
-                    <div className={"knowledge_list_container_rit_sort_all"}>全部</div>
-                    <div className={"knowledge_list_container_rit_sort_font_group"}>
-                        {letterList.map((res, index) => {
-                            return <div className={"knowledge_list_container_rit_sort_font"}
-                                        key={index}
-                                        style={letterActiveList.find(e => e.keyword === res) ?
-                                            {color: "#000"} : {color: "#999"}}>{res}</div>
-                        })}
+                <div className={"knowledge_list_container_let"}>
+                    <LeftNavBox selectTag={selectTag}
+                                type={99}
+                                title={"知识类型"}
+                                assetsList={typeList}
+                                setTag={onChangeSelectTag}></LeftNavBox>
+                    {
+                        advanceList.map((result, index) => {
+                            return (
+                                filterNavBox(result, index)
+                            )
+                        })
+                    }
+
+                </div>
+                <div className={"knowledge_list_container_rit"}>
+                    <ListHeader
+                        buildSelectTag={buildSelectTag}
+                        timerSelectTag={timerSelectTag}
+                        eventSelectTag={eventSelectTag}
+                        orgSelectTag={orgSelectTag}
+                        geoSelectTag={geoSelectTag}
+                        productTag={productTag}
+                        advanceList={advanceList}
+                        setBuildSelectTag={setBuildSelectTag}
+                        setTimerSelectTag={setTimerSelectTag}
+                        setEventSelectTag={setEventSelectTag}
+                        setOrgSelectTag={setOrgSelectTag}
+                        setGeoSelectTag={setGeoSelectTag}
+                        setProductSelectTag={setProductSelectTag}
+                        deleteTagFunction={deleteTagFunction}
+                    ></ListHeader>
+                    <div className={"knowledge_list_container_rit_sort"}>
+                        <div className={"knowledge_list_container_rit_sort_title"}>排序筛选：</div>
+                        <div className={"knowledge_list_container_rit_sort_all"}>全部</div>
+                        <div className={"knowledge_list_container_rit_sort_font_group"}>
+                            {letterList.map((res, index) => {
+                                return <div className={"knowledge_list_container_rit_sort_font"}
+                                            key={index}
+                                            style={letterActiveList.find(e => e.keyword === res) ?
+                                                {color: "#000"} : {color: "#999"}}>{res}</div>
+                            })}
+                        </div>
+                    </div>
+                    <div className={"knowledge_list_container_rit_list"}>
+                        <KnowledgeList data={knowledgeList} moreHeaderSlot={moreHeaderSlotCompose()}></KnowledgeList>
                     </div>
                 </div>
-                <div className={"knowledge_list_container_rit_list"}>
-                    <KnowledgeList data={knowledgeList} moreHeaderSlot={moreHeaderSlotCompose()}></KnowledgeList>
-                </div>
             </div>
-        </div>
+        </>
     )
 }
