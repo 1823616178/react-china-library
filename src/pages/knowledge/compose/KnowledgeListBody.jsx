@@ -63,9 +63,8 @@ export function KnowledgeListBody() {
         if (query.length === 0) {
             await clearValue()
         }
-        // setAdaParamsQuery([])
-        // await clearValue()
     }
+
     /**
      * 删除标签方法
      * @param func
@@ -78,7 +77,6 @@ export function KnowledgeListBody() {
             if (deleteParam > -1) adaParamsQuery.splice(deleteParam, 1)
             await onChangeSelectTag(selectTag, adaParamsQuery)
         }
-
     }
 
     /**

@@ -4,7 +4,7 @@ import {SearchBox} from "@/composent/header/SearchBox.jsx";
 import React, {useEffect, useState} from "react";
 import {checkboxTypeArray} from "@/pages/knowledge/compose/bodyHead/js/common.js";
 
-export function BodyHead({selectTag, typeList, checkboxActiveArr, setCheckboxActiveArr}) {
+export function BodyHead({selectTag, typeList}) {
     const [checkBoxShow, changeCheckbox] = useState(false)
     const [checkboxArr, setCheckboxArr] = useState([])
     useEffect(() => {
@@ -17,8 +17,6 @@ export function BodyHead({selectTag, typeList, checkboxActiveArr, setCheckboxAct
                 changeCheckbox={changeCheckbox}
                 checkboxArr={checkboxArr}
                 setCheckboxArr={setCheckboxArr}
-                checkboxActiveArr={checkboxActiveArr}
-                setCheckboxActiveArr={setCheckboxActiveArr}
             />
             {
                 checkBoxShow ? <SearchBox changeCheckbox={changeCheckbox}/> : <></>

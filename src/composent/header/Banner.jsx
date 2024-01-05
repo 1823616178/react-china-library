@@ -1,18 +1,25 @@
 import {useEffect, useState} from "react";
 import defaultHeaderTitle from '@/assets/img/home/home_banner_title.png'
+import {isAction} from "@reduxjs/toolkit";
 
 export function HomeBanner({
                                changeCheckbox,
                                headerTitle = defaultHeaderTitle,
                                checkboxArr = [],
                                setCheckboxArr,
-                               checkboxActiveArr,
-                               setCheckboxActiveArr
                            }) {
 
     const [allChecked, setAllChecked] = useState(true)
+    /**
+     * 全选时
+     * @param val
+     */
     const onChangeAllChecked = (val) => {
         setAllChecked(val.target.checked)
+        const newCheckBoxArr = checkboxArr.map((res, i) => {
+            return {...res, isActive: val.target.checked}
+        })
+        setCheckboxArr(newCheckBoxArr)
     }
 
     const handleChange = (index) => {
@@ -24,6 +31,7 @@ export function HomeBanner({
         });
         setCheckboxArr(newCheckboxArr);
     };
+
 
     const handleChangeCopy = (index) => {
         {
@@ -61,7 +69,7 @@ export function HomeBanner({
                 {checkboxArr.map((res, index) => (
                     <label key={index}>
                         <input type={"checkbox"}
-                               onClick={() => handleChange(index)}
+                               onChange={() => handleChange(index)}
                                checked={res.isActive}
                                title={res.title} className={"banner_container_checkbox"}/>
                         <span>{res.title}</span>
