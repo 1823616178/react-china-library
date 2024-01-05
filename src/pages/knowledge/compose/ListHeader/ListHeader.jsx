@@ -21,8 +21,8 @@ export const ListHeader = ({
     /**
      * 删除标签
      */
-    const deleteTag = (func) => {
-        deleteTagFunction(func)
+    const deleteTag = (func, type) => {
+        deleteTagFunction(func, type)
     }
     return (
         <div className={"Literature_container_rit_header"}>
@@ -32,37 +32,37 @@ export const ListHeader = ({
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[0]?.children[buildSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setBuildSelectTag)}></div>
+                         onClick={() => deleteTag(setBuildSelectTag, 0)}></div>
                 </div> : null}
                 {typeof timerSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[timerSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setTimerSelectTag)}></div>
+                         onClick={() => deleteTag(setTimerSelectTag, 1)}></div>
                 </div> : null}
                 {typeof eventSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[eventSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setEventSelectTag)}></div>
+                         onClick={() => deleteTag(setEventSelectTag, 1)}></div>
                 </div> : null}
                 {typeof orgSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[orgSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setOrgSelectTag)}></div>
+                         onClick={() => deleteTag(setOrgSelectTag, 1)}></div>
                 </div> : null}
                 {typeof geoSelectTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[geoSelectTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setGeoSelectTag)}></div>
+                         onClick={() => deleteTag(setGeoSelectTag, 1)}></div>
                 </div> : null}
                 {typeof productTag !== "undefined" ? <div className={"Literature_container_rit_header_let_tab"}>
                     <div
                         className={"Literature_container_rit_header_let_tab_title"}>{`建设单位：` + advanceList[1]?.children[productTag].title}</div>
                     <div className={"Literature_container_rit_header_let_tab_icon"}
-                         onClick={() => deleteTag(setProductSelectTag)}></div>
+                         onClick={() => deleteTag(setProductSelectTag, 1)}></div>
                 </div> : null}
             </div>
             <div className={"Literature_container_rit_header_right"}>

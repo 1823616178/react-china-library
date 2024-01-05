@@ -61,9 +61,18 @@ export function KnowledgeListBody() {
         // await clearValue()
     }
     /**
+     * 删除标签方法
+     * @param func
+     */
+    const deleteTagFunction = async (func,type) => {
+        await func(undefined)
+    }
+    /**
      * 当改变BuildIndex时
      */
     const onChangeBuildTag = async (data, type, setValue) => {
+        console.log(data)
+
         await setValue(data)
         await getAdvanceList(type, data)
         await onChangeSelectTag(selectTag, adaParamsQuery)
@@ -246,9 +255,7 @@ export function KnowledgeListBody() {
         }
     }
 
-    const deleteTagFunction = (func) => {
-        func(undefined)
-    }
+
     return (
         <div className={"knowledge_list_container"}>
             <div className={"knowledge_list_container_let"}>
