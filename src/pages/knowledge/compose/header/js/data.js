@@ -1,18 +1,18 @@
 export const checkboxType = {
     zsk_personal_temp: [
-        {field: "personalName", title: "人物通用名称", isActive: false},
+        {field: "personalName", title: "通用名称", isActive: false},
         {field: "sourceName", title: "知识出处", isActive: false},
         {field: "period", title: "时代", isActive: false},
         {field: "biography", title: "人物传略", isActive: false}
     ],
     zsk_org_temp: [
-        {field: "chiOrganizationName", title: "机构中文名称", isActive: false},
+        {field: "chiOrganizationName", title: "中文名称", isActive: false},
         {field: "sourceName", title: "知识出处", isActive: false},
         {field: "type", title: "行业类型", isActive: false},
         {field: "description", title: "机构描述", isActive: false}
     ],
     zsk_event_temp: [
-        {field: "chiEventName", title: "事件中文名称", isActive: false},
+        {field: "chiEventName", title: "中文名称", isActive: false},
         {field: "sourceName", title: "知识出处", isActive: false},
         {field: "type", title: "事件类型", isActive: false},
         {field: "biography", title: "事件描述", isActive: false}

@@ -119,6 +119,8 @@
             vertical-align: middle;
             width: 131px;
             height: 38px;
+            box-sizing: border-box;
+            padding: 0 10px;
           }
 
           .search_box_container_card_body_list_input {
@@ -152,6 +154,7 @@
             width: 56px;
             background-color: #B2806C;
             color: #FFFFFF;
+            user-select: none;
             cursor: pointer;
             text-align: center;
             line-height: 30px;

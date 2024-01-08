@@ -54,6 +54,7 @@ export function KnowledgeListBody() {
     const [checkboxArr, setCheckboxArr] = useState([])
     const [resultCheckbox, setResultCheckbox] = useState([])
     const [keyword, setKeyword] = useState("")
+
     useEffect(() => {
         setCheckboxArr(checkboxTypeArray[typeList[selectTag]?.type])
     }, [selectTag, typeList]);
@@ -163,7 +164,6 @@ export function KnowledgeListBody() {
     }
 
     const getDataByType = async (type, params) => {
-        console.log([...params, ...resultCheckbox])
         switch (type) {
             case "zsk_personal_temp":
                 await loadMoreFetch(getPersonalAPiListParams(listQuery([...params, ...resultCheckbox])))

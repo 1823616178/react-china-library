@@ -1,20 +1,27 @@
 import '@/assets/style/SearchBox.scss'
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import {checkboxType} from "@/pages/knowledge/compose/header/js/data.js";
+import {pushSubmitObjToArray} from "@/pages/knowledge/compose/header/js/searchBoxUtils.js";
 
-export function SearchBox(props) {
-    const radioGroup = [
-        {title: "文献", value: ""},
-        {title: "篇章", value: ""},
-        {title: "图表", value: ""},
-        {title: "知识", value: ""}
-    ]
-    const [radioType] = useState(radioGroup)
+export function SearchBox({changeCheckbox, type}) {
+    const [checkboxList, setCheckboxList] = useState([]) //关键字列表
+    const submitObject = {
+        field: "personalName",
+        keyword: "",
+        match: "fuzzy",
+        relation: "must"
+    }
+    const [submitList, setSubmitList] = useState([submitObject]) //提交列表
     const layerRef = useRef(null)
     const closeFunc = (event) => {
         if (event.target.className === 'search_box_container') {
-            props.changeCheckbox(false)
+            changeCheckbox(false)
         }
     }
+
+    useEffect(() => {
+        setCheckboxList(checkboxType?.[type] || [])
+    }, [type]);
     return (
         <div className={"search_box_container"} ref={layerRef} onClick={(event) => {
             closeFunc(event)
@@ -23,28 +30,45 @@ export function SearchBox(props) {
                 <div className={"search_box_container_card_head"}>
                     <div className={"search_box_container_card_head_title"}>高级检索</div>
                     <div className={"search_box_container_card_head_close"} onClick={() => {
-                        props.changeCheckbox(false)
+                        changeCheckbox(false)
                     }}></div>
                 </div>
                 <div className={"search_box_container_card_body"}>
                     <div className={"search_box_container_card_body_list"}>
-                        <div className={"search_box_container_card_body_list_li"}>
-                            <select className={"search_box_container_card_body_list_relation"}>
-                                <option>默</option>
-                                <option>默</option>
-                            </select>
-                            <select className={"search_box_container_card_body_list_type"}>
-                                <option>默认第一</option>
-                                <option>默认第一</option>
-                            </select>
-                            <input className={"search_box_container_card_body_list_input"}></input>
-                            <select className={"search_box_container_card_body_list_must"}>
-                                <option>默认</option>
-                                <option>默认</option>
-                            </select>
-                            <div className={"search_box_container_card_body_list_new"}>新增</div>
-                            <div className={"search_box_container_card_body_list_sub"}>删除</div>
-                        </div>
+                        {submitList.map((props, fdex) => {
+                            return (
+                                <div key={fdex} className={"search_box_container_card_body_list_li"}>
+                                    <select className={"search_box_container_card_body_list_relation"}>
+                                        <option>与</option>
+                                        <option>或</option>
+                                    </select>
+                                    <select className={"search_box_container_card_body_list_type"}>
+                                        {checkboxList.map((res, index) => {
+                                            return (
+                                                <option key={index}>{res?.title}</option>
+                                            )
+                                        })}
+                                    </select>
+                                    <input className={"search_box_container_card_body_list_input"}
+                                           value={props.keyword}
+                                           onChange={(ta) => {
+                                               const arr = submitList.map(res => {
+                                                   return {...res, keyword: ta.target.value}
+                                               })
+                                               setSubmitList(arr)
+                                           }}
+                                           placeholder={"输入检索关键字"}></input>
+                                    <select className={"search_box_container_card_body_list_must"}>
+                                        <option>模糊</option>
+                                        <option>精准</option>
+                                    </select>
+                                    <div className={"search_box_container_card_body_list_new"}
+                                         onClick={() => pushSubmitObjToArray(submitList, setSubmitList)}>新增
+                                    </div>
+                                    <div className={"search_box_container_card_body_list_sub"}>删除</div>
+                                </div>
+                            )
+                        })}
                     </div>
                     <div className={"search_box_container_card_body_submit_group"}>
                         <div className={"search_box_container_card_body_submit_reset"}>
