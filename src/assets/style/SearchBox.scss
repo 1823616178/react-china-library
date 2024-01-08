@@ -82,10 +82,14 @@
       .search_box_container_card_body_list {
         padding-top: 20px;
         box-sizing: border-box;
+        overflow-y: auto;
+        padding-bottom: 20px;
+        height: calc(100% - 70px);
 
         .search_box_container_card_body_list_li {
           display: flex;
           justify-content: space-between;
+          margin-top: 10px;
           align-items: center;
           height: 38px;
 
@@ -176,24 +180,29 @@
       }
 
       .search_box_container_card_body_submit_group {
+        height: 60px;
+        display: flex;
+        white-space: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+
         .search_box_container_card_body_submit_reset {
-          .search_box_container_card_body_submit_reset_icon {
-
-          }
-
-          .search_box_container_card_body_submit_reset_title {
-
-          }
+          display: inline-block;
+          vertical-align: middle;
+          width: 237px;
+          cursor: pointer;
+          background-image: url("@/assets/img/layout/reset_icon.png");
+          height: 56px;
+          margin-right: 10px;
         }
 
         .search_box_container_card_body_submit_search {
-          .search_box_container_card_body_submit_search_icon {
-
-          }
-
-          .search_box_container_card_body_submit_search_title {
-
-          }
+          display: inline-block;
+          vertical-align: middle;
+          width: 545px;
+          cursor: pointer;
+          background-image: url("@/assets/img/layout/search_icon.png");
+          height: 56px;
         }
       }
     }

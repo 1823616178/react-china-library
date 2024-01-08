@@ -1,12 +1,16 @@
 import '@/assets/style/SearchBox.scss'
 import {useEffect, useRef, useState} from "react";
 import {checkboxType} from "@/pages/knowledge/compose/header/js/data.js";
-import {pushSubmitObjToArray} from "@/pages/knowledge/compose/header/js/searchBoxUtils.js";
+import {
+    changeValue,
+    deleteSubmitForm,
+    pushSubmitObjToArray
+} from "@/pages/knowledge/compose/header/js/searchBoxUtils.js";
 
 export function SearchBox({changeCheckbox, type}) {
     const [checkboxList, setCheckboxList] = useState([]) //关键字列表
     const submitObject = {
-        field: "personalName",
+        field: "sourceName",
         keyword: "",
         match: "fuzzy",
         relation: "must"
@@ -38,10 +42,12 @@ export function SearchBox({changeCheckbox, type}) {
                         {submitList.map((props, fdex) => {
                             return (
                                 <div key={fdex} className={"search_box_container_card_body_list_li"}>
-                                    <select className={"search_box_container_card_body_list_relation"}>
-                                        <option>与</option>
-                                        <option>或</option>
-                                    </select>
+                                    {fdex !== 0 ? <select className={"search_box_container_card_body_list_relation"}
+                                                          onChange={(ta) => changeValue(ta, submitList, setSubmitList, fdex, "relation")}>
+                                        <option value={"must"}>与</option>
+                                        <option value={"should"}>或</option>
+                                    </select> : <div className={"search_box_container_card_body_list_relation"}
+                                                     style={{border: "none"}}></div>}
                                     <select className={"search_box_container_card_body_list_type"}>
                                         {checkboxList.map((res, index) => {
                                             return (
@@ -51,33 +57,30 @@ export function SearchBox({changeCheckbox, type}) {
                                     </select>
                                     <input className={"search_box_container_card_body_list_input"}
                                            value={props.keyword}
-                                           onChange={(ta) => {
-                                               const arr = submitList.map(res => {
-                                                   return {...res, keyword: ta.target.value}
-                                               })
-                                               setSubmitList(arr)
-                                           }}
+                                           onChange={(ta) => changeValue(ta, submitList, setSubmitList, fdex, "keyword")}
                                            placeholder={"输入检索关键字"}></input>
-                                    <select className={"search_box_container_card_body_list_must"}>
-                                        <option>模糊</option>
-                                        <option>精准</option>
+                                    <select className={"search_box_container_card_body_list_must"}
+                                            onChange={(ta) => changeValue(ta, submitList, setSubmitList, fdex, "match")}>
+                                        <option value={"fuzzy"}>模糊</option>
+                                        <option value={"term"}>精准</option>
                                     </select>
                                     <div className={"search_box_container_card_body_list_new"}
                                          onClick={() => pushSubmitObjToArray(submitList, setSubmitList)}>新增
                                     </div>
-                                    <div className={"search_box_container_card_body_list_sub"}>删除</div>
+                                    {fdex !== 0 ? <div className={"search_box_container_card_body_list_sub"}
+                                                       onClick={() => deleteSubmitForm(submitList, setSubmitList, fdex)}>删除
+                                    </div> : <div className={"search_box_container_card_body_list_new"}
+                                                  style={{backgroundColor: "unset", cursor: 'default'}}></div>}
                                 </div>
                             )
                         })}
                     </div>
                     <div className={"search_box_container_card_body_submit_group"}>
                         <div className={"search_box_container_card_body_submit_reset"}>
-                            <div className={"search_box_container_card_body_submit_reset_icon"}></div>
-                            <div className={"search_box_container_card_body_submit_reset_title"}></div>
+
                         </div>
                         <div className={"search_box_container_card_body_submit_search"}>
-                            <div className={"search_box_container_card_body_submit_search_icon"}></div>
-                            <div className={"search_box_container_card_body_submit_search_title"}></div>
+
                         </div>
                     </div>
                 </div>
