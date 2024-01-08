@@ -1,6 +1,6 @@
 .search_box_container {
   width: 100%;
-  height: 100% ;
+  height: 100%;
   position: fixed;
   background: rgba(0, 0, 0, .3);
   backdrop-filter: blur(30px);
@@ -80,6 +80,9 @@
       }
 
       .search_box_container_card_body_list {
+        padding-top: 20px;
+        box-sizing: border-box;
+
         .search_box_container_card_body_list_li {
           display: flex;
           justify-content: space-between;

@@ -27,15 +27,6 @@ export function SearchBox(props) {
                     }}></div>
                 </div>
                 <div className={"search_box_container_card_body"}>
-                    <div className={"search_box_container_card_body_select_group"}>
-                        {radioType.map((res, index) => {
-                            return <label key={index}>
-                                <input type={"radio"} className={"search_box_container_card_body_radio"}/>
-                                <span>{res.title}</span>
-                            </label>
-                        })}
-
-                    </div>
                     <div className={"search_box_container_card_body_list"}>
                         <div className={"search_box_container_card_body_list_li"}>
                             <select className={"search_box_container_card_body_list_relation"}>

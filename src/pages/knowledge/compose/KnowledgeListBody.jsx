@@ -21,6 +21,7 @@ import {HomeBanner} from "@/composent/header/Banner.jsx";
 import headerTitle from "@/assets/img/home/home_banner_title.png";
 import {SearchBox} from "@/composent/header/SearchBox.jsx";
 import {BodyHead} from "@/pages/knowledge/compose/bodyHead/BodyHead.jsx";
+import {checkboxTypeArray} from "@/pages/knowledge/compose/bodyHead/js/common.js";
 
 
 export function KnowledgeListBody() {
@@ -49,6 +50,18 @@ export function KnowledgeListBody() {
     const [adaParamsQuery, setAdaParamsQuery] = useState([])
     const [{data: initialsInfoList}, reGetInfoList] = getInitialsInfo({advancedRetrievalParams: listQuery(adaParamsQuery).advancedRetrievalParams})
     const [{data: knowLedgePersonalList}, loadMoreFetch] = getPersonalAPiList(listQuery(adaParamsQuery))
+
+    const [checkboxArr, setCheckboxArr] = useState([])
+    const [resultCheckbox, setResultCheckbox] = useState([])
+    const [keyword, setKeyword] = useState("")
+    useEffect(() => {
+        setCheckboxArr(checkboxTypeArray[typeList[selectTag]?.type])
+    }, [selectTag, typeList]);
+
+    useEffect(() => {
+        let type = typeList[selectTag]?.type
+        getDataByType(type, adaParamsQuery).then()
+    }, [resultCheckbox])
 
     /**
      * 当改变主选项时
@@ -85,7 +98,25 @@ export function KnowledgeListBody() {
     const onChangeBuildTag = async (data, type, setValue) => {
         await setValue(data)
         await getAdvanceList(type, data)
-        await onChangeSelectTag(selectTag, adaParamsQuery)
+    }
+
+    /**
+     * 当改变数组时，请求数据
+     * @returns {Promise<void>}
+     */
+    const onChangeCheckBoxArrGetList = async () => {
+        let arr = []
+        for (let i in checkboxArr) {
+            let obj = {
+                relation: "should",
+                field: checkboxArr[i].field,
+                keyword: keyword,
+                match: "fuzzy"
+            }
+            arr.push(obj)
+        }
+        await setResultCheckbox(arr)
+        // await getDataByType(nowPageType, adaParamsQuery)
     }
 
     /**
@@ -99,6 +130,7 @@ export function KnowledgeListBody() {
         setGeoSelectTag(undefined)
         setProductSelectTag(undefined)
         setAdaParamsQuery([])
+        setResultCheckbox([])
     }
 
     const getAdvanceList = (type, index) => {
@@ -131,21 +163,22 @@ export function KnowledgeListBody() {
     }
 
     const getDataByType = async (type, params) => {
+        console.log([...params, ...resultCheckbox])
         switch (type) {
             case "zsk_personal_temp":
-                await loadMoreFetch(getPersonalAPiListParams(listQuery(params)))
+                await loadMoreFetch(getPersonalAPiListParams(listQuery([...params, ...resultCheckbox])))
                 break;
             case "zsk_org_temp":
-                await loadMoreFetch(getOrganizationApiList(listQuery(params)))
+                await loadMoreFetch(getOrganizationApiList(listQuery([...params, ...resultCheckbox])))
                 break;
             case "zsk_event_temp":
-                await loadMoreFetch(getEventApiList(listQuery(params)))
+                await loadMoreFetch(getEventApiList(listQuery([...params, ...resultCheckbox])))
                 break;
             case "zsk_geographical_temp":
-                await loadMoreFetch(getGeographicalApiList(listQuery(params)))
+                await loadMoreFetch(getGeographicalApiList(listQuery([...params, ...resultCheckbox])))
                 break;
             case "zsk_product_temp":
-                await loadMoreFetch(getProductApiList(listQuery(params)))
+                await loadMoreFetch(getProductApiList(listQuery([...params, ...resultCheckbox])))
                 break;
             default:
                 break;
@@ -269,7 +302,12 @@ export function KnowledgeListBody() {
     return (
         <>
             <BodyHead selectTag={selectTag}
+                      checkboxArr={checkboxArr}
                       typeList={typeList}
+                      setCheckboxArr={setCheckboxArr}
+                      keyword={keyword}
+                      setKeyword={setKeyword}
+                      changeFunction={onChangeCheckBoxArrGetList}
                       checkboxActiveArr={checkboxActiveArr}
                       setCheckboxActiveArr={setCheckboxActiveArr}
             ></BodyHead>
