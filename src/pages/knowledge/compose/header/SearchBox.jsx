@@ -4,7 +4,7 @@ import {checkboxType} from "@/pages/knowledge/compose/header/js/data.js";
 import {
     changeValue,
     deleteSubmitForm,
-    pushSubmitObjToArray
+    pushSubmitObjToArray, resetValue
 } from "@/pages/knowledge/compose/header/js/searchBoxUtils.js";
 
 export function SearchBox({changeCheckbox, type}) {
@@ -76,12 +76,12 @@ export function SearchBox({changeCheckbox, type}) {
                         })}
                     </div>
                     <div className={"search_box_container_card_body_submit_group"}>
-                        <div className={"search_box_container_card_body_submit_reset"}>
+                        <div className={"search_box_container_card_body_submit_reset"}
+                             onClick={() => resetValue(setSubmitList)}></div>
+                        <div className={"search_box_container_card_body_submit_search"}
+                             onClick={() => {
 
-                        </div>
-                        <div className={"search_box_container_card_body_submit_search"}>
-
-                        </div>
+                             }}></div>
                     </div>
                 </div>
             </div>

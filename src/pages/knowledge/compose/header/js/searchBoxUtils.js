@@ -42,3 +42,17 @@ export const changeValue = (event, data, setData, index, key) => {
     })
     setData(arr)
 }
+/**
+ * 重置
+ * @param setSubmitList
+ */
+export const resetValue = (setSubmitList) => {
+    let submitObject = {
+        field: "sourceName",
+        keyword: "",
+        match: "fuzzy",
+        relation: "must"
+    }
+    setSubmitList([submitObject])
+}
+
