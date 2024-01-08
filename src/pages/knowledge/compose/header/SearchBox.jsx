@@ -7,15 +7,9 @@ import {
     pushSubmitObjToArray, resetValue
 } from "@/pages/knowledge/compose/header/js/searchBoxUtils.js";
 
-export function SearchBox({changeCheckbox, type}) {
+export function SearchBox({changeCheckbox, type, highSearch, submitList, setSubmitList}) {
     const [checkboxList, setCheckboxList] = useState([]) //关键字列表
-    const submitObject = {
-        field: "sourceName",
-        keyword: "",
-        match: "fuzzy",
-        relation: "must"
-    }
-    const [submitList, setSubmitList] = useState([submitObject]) //提交列表
+
     const layerRef = useRef(null)
     const closeFunc = (event) => {
         if (event.target.className === 'search_box_container') {
@@ -79,9 +73,7 @@ export function SearchBox({changeCheckbox, type}) {
                         <div className={"search_box_container_card_body_submit_reset"}
                              onClick={() => resetValue(setSubmitList)}></div>
                         <div className={"search_box_container_card_body_submit_search"}
-                             onClick={() => {
-
-                             }}></div>
+                             onClick={() => highSearch(submitList)}></div>
                     </div>
                 </div>
             </div>

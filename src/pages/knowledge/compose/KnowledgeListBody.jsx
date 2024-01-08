@@ -50,10 +50,19 @@ export function KnowledgeListBody() {
     const [adaParamsQuery, setAdaParamsQuery] = useState([])
     const [{data: initialsInfoList}, reGetInfoList] = getInitialsInfo({advancedRetrievalParams: listQuery(adaParamsQuery).advancedRetrievalParams})
     const [{data: knowLedgePersonalList}, loadMoreFetch] = getPersonalAPiList(listQuery(adaParamsQuery))
-
     const [checkboxArr, setCheckboxArr] = useState([])
     const [resultCheckbox, setResultCheckbox] = useState([])
     const [keyword, setKeyword] = useState("")
+    const [checkBoxShow, changeCheckbox] = useState(false)
+
+    const submitObject = {
+        field: "sourceName",
+        keyword: "",
+        match: "fuzzy",
+        relation: "must"
+    }
+    const [submitList, setSubmitList] = useState([submitObject]) //提交列表
+
 
     useEffect(() => {
         setCheckboxArr(checkboxTypeArray[typeList[selectTag]?.type])
@@ -61,8 +70,18 @@ export function KnowledgeListBody() {
 
     useEffect(() => {
         let type = typeList[selectTag]?.type
-        getDataByType(type, adaParamsQuery).then()
-    }, [resultCheckbox])
+        getDataByType(type, adaParamsQuery ? adaParamsQuery : []).then()
+    }, [resultCheckbox, adaParamsQuery])
+
+    const highSearch = async (params = []) => {
+        const query = params.filter(res => {
+            return res.keyword !== ''
+        })
+        let type = typeList[selectTag]?.type
+        getDataByType(type, query ? query : [], true).then(() => {
+            changeCheckbox(false)
+        })
+    }
 
     /**
      * 当改变主选项时
@@ -108,15 +127,17 @@ export function KnowledgeListBody() {
     const onChangeCheckBoxArrGetList = async () => {
         let arr = []
         for (let i in checkboxArr) {
-            let obj = {
-                relation: "should",
-                field: checkboxArr[i].field,
-                keyword: keyword,
-                match: "fuzzy"
+            if (checkboxArr[i].isActive) {
+                let obj = {
+                    relation: "should",
+                    field: checkboxArr[i].field,
+                    keyword: keyword,
+                    match: "fuzzy"
+                }
+                arr.push(obj)
             }
-            arr.push(obj)
         }
-        await setResultCheckbox(arr)
+        await setResultCheckbox([...arr])
         // await getDataByType(nowPageType, adaParamsQuery)
     }
 
@@ -140,45 +161,49 @@ export function KnowledgeListBody() {
             if (params) {
                 let index = adaParamsQuery.findIndex(res => res.field === params.columnName)
                 if (index > -1) {
-                    let arr = adaParamsQuery
-                    arr[index] = {
-                        relation: "must",
-                        field: params.columnName,
-                        keyword: params.title,
-                        match: "term"
-                    }
+                    let arr = adaParamsQuery.map((res, i) => {
+                        if (index === i) {
+                            return {...res, field: params.columnName, keyword: params.title,}
+                        }
+                        return {...res}
+                    })
                     setAdaParamsQuery(arr)
                 } else {
-                    let arr = adaParamsQuery
                     let obj = {
                         relation: "must",
                         field: params.columnName,
                         keyword: params.title,
                         match: "term"
                     }
-                    arr.push(obj)
+                    let arr = [...adaParamsQuery, obj]
                     setAdaParamsQuery(arr)
                 }
             }
         }
     }
 
-    const getDataByType = async (type, params) => {
+    const getDataByType = async (type, params, tag) => {
+        console.log("type", type)
+        console.log("data", [...params, ...resultCheckbox])
+        let query = [...params, ...resultCheckbox]
+        if (tag) {
+            let query = [...params]
+        }
         switch (type) {
             case "zsk_personal_temp":
-                await loadMoreFetch(getPersonalAPiListParams(listQuery([...params, ...resultCheckbox])))
+                await loadMoreFetch(getPersonalAPiListParams(listQuery(query)))
                 break;
             case "zsk_org_temp":
-                await loadMoreFetch(getOrganizationApiList(listQuery([...params, ...resultCheckbox])))
+                await loadMoreFetch(getOrganizationApiList(listQuery(query)))
                 break;
             case "zsk_event_temp":
-                await loadMoreFetch(getEventApiList(listQuery([...params, ...resultCheckbox])))
+                await loadMoreFetch(getEventApiList(listQuery(query)))
                 break;
             case "zsk_geographical_temp":
-                await loadMoreFetch(getGeographicalApiList(listQuery([...params, ...resultCheckbox])))
+                await loadMoreFetch(getGeographicalApiList(listQuery(query)))
                 break;
             case "zsk_product_temp":
-                await loadMoreFetch(getProductApiList(listQuery([...params, ...resultCheckbox])))
+                await loadMoreFetch(getProductApiList(listQuery(query)))
                 break;
             default:
                 break;
@@ -306,7 +331,12 @@ export function KnowledgeListBody() {
                       typeList={typeList}
                       setCheckboxArr={setCheckboxArr}
                       keyword={keyword}
+                      submitList={submitList}
+                      checkBoxShow={checkBoxShow}
+                      setSubmitList={setSubmitList}
+                      changeCheckbox={changeCheckbox}
                       setKeyword={setKeyword}
+                      highSearch={highSearch}
                       changeFunction={onChangeCheckBoxArrGetList}
                       checkboxActiveArr={checkboxActiveArr}
                       setCheckboxActiveArr={setCheckboxActiveArr}
