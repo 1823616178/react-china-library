@@ -29,6 +29,15 @@ export const LiteratureBody = () => {
         setMainSourceType(sourceType || 100)
     }
 
+    /**
+     * 切换导航选项时触发
+     * @param data
+     */
+    const changeCategory = (data) => {
+        console.log(data)
+    }
+
+
     return (
         <div className={"Literature_container"}>
             <div className={"Literature_container_left"}>
@@ -54,6 +63,7 @@ export const LiteratureBody = () => {
                 </div>
                 {categoryData?.data.map((item, index) => {
                     return <ArrowSelect
+                        changeCategory={changeCategory}
                         categoryGatherList={categoryGatherList}
                         title={item?.classificationName || ""}
                         children={item?.children || []}

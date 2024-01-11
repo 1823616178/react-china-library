@@ -40,12 +40,14 @@
     border-bottom: 1px solid #653C02;
     background: white;
     overflow-x: auto;
-    padding: 24px 0 0 20px;
+    padding: 0 0 0 20px;
     box-sizing: border-box;
 
     .Literature_container_left_fenlei_body_li {
-      margin-bottom: 24px;
+      //margin-bottom: 24px;
       cursor: pointer;
+      min-height: 50px;
+      line-height: 50px;
 
       .Literature_container_left_fenlei_body_li_head {
         display: flex;
@@ -83,12 +85,12 @@
       }
 
       .Literature_container_left_fenlei_body_li_body {
-
+        white-space: normal;
         .Literature_container_left_fenlei_body_li_body_li {
           padding-left: 25px;
-          height: 25px;
-          line-height: 25px;
-          margin-top: 10px;
+          user-select: none;
+          height: 40px;
+          line-height: 35px;
           white-space: nowrap;
 
           .Literature_container_left_fenlei_body_li_body_li_icon {
