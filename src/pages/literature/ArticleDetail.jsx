@@ -9,19 +9,6 @@ import {KnowledgeList} from "@/composent/KnowledgeList/KnowledgeList.jsx";
 export const LiteratureArticleDetail = () => {
     return (
         <div className={"literature_article_container"}>
-            <div className={"literature_article_container_nav"}>
-                <div className={"literature_article_container_nav_li"}>
-                    <div className={"literature_article_container_nav_li_title"}>当前目录</div>
-                    <div className={"literature_article_container_nav_li_title"} style={{margin: "0 10px"}}>{">"}</div>
-                </div>
-                <div className={"literature_article_container_nav_li"}>
-                    <div className={"literature_article_container_nav_li_title"}>文献</div>
-                    <div className={"literature_article_container_nav_li_title"} style={{margin: "0 10px"}}>{">"}</div>
-                </div>
-                <div className={"literature_article_container_nav_li"}>
-                    <div className={"literature_article_container_nav_li_title"}>篇章详情</div>
-                </div>
-            </div>
             <div className={"literature_article_container_title"}>大中華湖北省地理志序</div>
             <div className={"literature_article_container_detail"}>
                 <p style={{marginRight: "16px", color: "#999999"}}>篇章出处</p><span

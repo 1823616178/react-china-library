@@ -40,7 +40,6 @@ export function LiteratureChart() {
                             </div>
                         </div>
                     </ChartImageList>
-
                 </div>
             </div>
             <div style={{marginTop: "20px"}}>

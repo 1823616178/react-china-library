@@ -1,4 +1,4 @@
-import './style/index.scss'
+// import './style/index.scss'
 
 export const ArrowSelect = () => {
     return (

@@ -1,12 +1,14 @@
 import {LiteratureList} from "@/pages/literature/compose/LiteratureList.jsx";
 import '../style/index.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import activeTabImage from '@/assets/img/literature/tab_back.png'
-import {ArrowSelect} from "@/composent/ArrowSelect/ArrowSelect.jsx";
+import {ArrowSelect} from "./ArrowSelect/ArrowSelect.jsx";
+import {getBookCategory} from "@/api/literature.js";
+import {categoryParams, categoryType} from "@/pages/literature/js/base.js";
 
 export const LiteratureBody = () => {
-    const [ZiYuanIsSelect, setZiYuan] = useState(0)
-    const [ziyuanList] = useState([{title: "文献", num: 30}, {title: "篇章", num: 30}])
+    const [mainSourceType, setMainSourceType] = useState(100)
+    const categoryGatherList = useState([])
     const ziyuanStyle = {
         backgroundColor: "#F0E6E1",
         backgroundImage: `url(${activeTabImage})`,
@@ -14,7 +16,18 @@ export const LiteratureBody = () => {
     }
     const fenLeiList = useState([])
     const [fenleiIsSelect, setFenLei] = useState(0)
+    const [categoryList, setCategory] = useState(categoryType)
 
+    const [{data: categoryData}, reGetCategory] = getBookCategory(categoryParams(mainSourceType, []))
+
+
+    /**
+     * 改变资源类型列表时
+     * @param sourceType
+     */
+    const changeMainNavTag = (sourceType) => {
+        setMainSourceType(sourceType || 100)
+    }
 
     return (
         <div className={"Literature_container"}>
@@ -24,13 +37,11 @@ export const LiteratureBody = () => {
                         <div className={"Literature_container_left_head_title"}>资源类型</div>
                     </div>
                     <div className={"Literature_container_left_head_body"}>
-                        {ziyuanList.map((res, index) => {
+                        {categoryList.map((res, index) => {
                             return <div
-                                onClick={() => {
-                                    setZiYuan(index)
-                                }}
+                                onClick={() => changeMainNavTag(res?.sourceType)}
                                 key={index} className={"Literature_container_left_head_body_tab"}
-                                style={ZiYuanIsSelect === index ? ziyuanStyle : {}}>
+                                style={mainSourceType === res?.sourceType ? ziyuanStyle : {}}>
                                 <div className={"Literature_container_left_head_body_tab_font"}>
                                     {res.title}
                                 </div>
@@ -39,11 +50,15 @@ export const LiteratureBody = () => {
                                 </div>
                             </div>
                         })}
-
                     </div>
                 </div>
-                <ArrowSelect></ArrowSelect>
-                <ArrowSelect></ArrowSelect>
+                {categoryData?.data.map((item, index) => {
+                    return <ArrowSelect
+                        categoryGatherList={categoryGatherList}
+                        title={item?.classificationName || ""}
+                        children={item?.children || []}
+                        key={index}></ArrowSelect>
+                })}
             </div>
             <LiteratureList></LiteratureList>
         </div>
